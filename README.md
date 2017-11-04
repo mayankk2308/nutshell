@@ -34,7 +34,7 @@ This will rename the first occurrence of the found file in user space.
 
 ## Logging
 
-We will also implement a logging mechanism so that the user may see the underlying changes made to the system using the program.
+The application also includes a convenient logging system that maintains a systematic list of commands and results in a subdirectory called `logs`.
 
 ## License
 
