@@ -11,11 +11,6 @@ script_exec["move"] = "scripts/move.sh"
 script_exec["open"] = "scripts/open.sh"
 script_exec["organize"] = "scripts/organize.sh"
 
-# check existence of file_name in the system
-def check_file_existence(file_name):
-    build_request = ["find", file_name]
-    return find(build_request)
-
 # parse standard output
 def parse_std_out(response):
     full_std_out = []
@@ -85,8 +80,8 @@ def requestHandler(request):
         return "find", find(request)
 
     if request[0] == "copy" or request[0] == "move":
-        source_check = check_file_existence(request[1])
-        dest_check = check_file_existence(request[3])
+        source_check = find(request[1])
+        dest_check = find(request[3])
         if source_check is None:
             return "Unable to find source file. Please input a valid source.", None
         elif dest_check is None:
@@ -94,19 +89,19 @@ def requestHandler(request):
         return "copy", (source_check, dest_check)
 
     if request[0] == "open":
-        source_check = check_file_existence(request[1])
+        source_check = find(request[1])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "open", source_check
 
     if request[0] == "rename":
-        source_check = check_file_existence(request[1])
+        source_check = find(request[1])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "rename", source_check
 
     if request[0] == "organize":
-        source_check = check_file_existence(request[3])
+        source_check = find(request[3])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "organize", (source_check, request[1])
