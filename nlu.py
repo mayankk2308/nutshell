@@ -9,8 +9,8 @@ script_exec["move"] = "scripts/move.sh"
 script_exec["open"] = "scripts/open.sh"
 
 def find(request):
-    proc = subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
-    std_out = proc.stdout.readline().rstrip().decode("utf-8")
+    response = subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
+    std_out = response.stdout.readline().rstrip().decode("utf-8")
     print(std_out)
     return std_out
 
