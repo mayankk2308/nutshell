@@ -4,4 +4,4 @@
 
 filename="$1"
 
-find ~ -iname "$filename" -print -quit
+find ~ -iname "$filename" -print
