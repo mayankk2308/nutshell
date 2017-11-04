@@ -74,12 +74,13 @@ def organize(folder_name, doc_type):
             return std_out
     return "Action Successful!"
 
+
 # handle a user request
 def requestHandler(request):
     if request[0] == "find":
         return "find", find(request)
 
-    if request[0] == "copy" or request[0] == "move":
+    elif request[0] == "copy" or request[0] == "move":
         source_check = find(request[1])
         dest_check = find(request[3])
         if source_check is None:
@@ -88,23 +89,27 @@ def requestHandler(request):
             return "Unable to find destination folder. Please input a valid destination.", None
         return "copy", (source_check, dest_check)
 
-    if request[0] == "open":
+    elif request[0] == "open":
         source_check = find(request[1])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "open", source_check
 
-    if request[0] == "rename":
+    elif request[0] == "rename":
         source_check = find(request[1])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "rename", source_check
 
-    if request[0] == "organize":
+    elif request[0] == "organize":
         source_check = find(request[3])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
         return "organize", (source_check, request[1])
+
+    else:
+        return "Syntax currently not supported", None
+
 
 # primary entry point
 def main(request):
