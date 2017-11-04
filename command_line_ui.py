@@ -1,9 +1,6 @@
 from appJar import gui
 import nlu
 
-
-
-
 def handleFind(response):
     if response == 0:
         app.scr
@@ -14,7 +11,6 @@ def handleFind(response):
         for option in response:
             output += str(ctr) +")" + " " + option + "\n\n"
             ctr += 1
-        # output = output + output;
         app.infoBox("File Path List",output)
 
 def requestHandler(button):
@@ -23,12 +19,6 @@ def requestHandler(button):
         command,response = nlu.main(request)
         if command == "find":
             handleFind(response)
-
-
-
-
-
-
 
 app = gui()
 app.addLabel("Title", "Natural Language Unix")

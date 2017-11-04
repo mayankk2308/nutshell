@@ -3,6 +3,7 @@ import subprocess
 import os
 from os.path import splitext, isfile, join
 
+# global parameters
 script_exec = {}
 script_exec["find"] = "scripts/find.sh"
 script_exec["copy"] = "scripts/copy.sh"
@@ -10,104 +11,107 @@ script_exec["move"] = "scripts/move.sh"
 script_exec["open"] = "scripts/open.sh"
 script_exec["organize"] = "scripts/organize.sh"
 
+# check existence of file_name in the system
+def check_file_existence(file_name):
+    build_request = ["find", file_name]
+    return find(build_request)
 
-def find(request):
-    response = subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
-    options = []
+# parse standard output
+def parse_std_out(response):
+    full_std_out = []
     while True:
         line = response.stdout.readline()
-        if line != b'':
-            options.append(line.rstrip().decode("utf-8"))
-        else:
-            break
-    return 0 if len(options) == 0 else options
+        if line == b'':
+            break;
+        full_std_out.append(line.rstrip().decode("utf-8"))
+    return full_std_out
 
+# find absolute path of possible file_name matches
+def find(file_name):
+    response = subprocess.Popen([script_exec["find"], file_name], stdout=subprocess.PIPE)
+    std_out = parse_std_out(response)
+    return "File or folder not found." if not std_out else std_out
 
-def copy_or_move(request):
-    src = find(["find", request[1]])
-    dst = find(["find", request[3]])
+# copy or move source file to given destination
+def copy_or_move(cmd, source, destination):
+    response = subprocess.Popen([script_exec[cmd], source, destination], stdout=subprocess.PIPE)
+    std_out = parse_std_out(response)
+    return "Action Successful!" if not std_out else std_out
 
-    if src == 0:
-        return 0, "Source File not found"
-    elif dst == 0:
-        return 0, "Destination  not found"
-    if len(src) > 1:
-        return 1, src
-    else:
-        subprocess.Popen([script_exec[request[0]], request[1], request[3]], stdout=subprocess.PIPE)
-        return 2, request[0] + "Successful"
+# open file or directory at unique_filepath
+def opencmd(unique_filepath):
+    response = subprocess.Popen([script_exec["open"], unique_filepath], stdout=subprocess.PIPE)
+    std_out = parse_std_out(response)
+    return "Action Successful!" if not std_out else std_out
 
+# rename source_name file with source_new_name
+def rename(source_name, source_new_name):
+    directory = source_name[0:source_name.rfind("/") + 1]
+    source_new_name = directory + source_new_name
+    return copy_or_move("move", source_name, source_new_name)
 
-
-def prefetch_file(request):
-    request[0] = "find"
-    std_out = find(request)
-    if len(std_out) == 0:
-        print("File or folder not found.")
-        return None
-    return std_out
-
-
-def opencmd(request):
-    if prefetch_file(request) is not None:
-        request[0] = "open"
-        subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
-
-
-def rename(request):
-    std_out = prefetch_file(request)
-    if std_out is not None:
-        request[0] = "move"
-        source = std_out
-        std_out = std_out[0:std_out.rfind("/") + 1]
-        request[1] = source[source.rfind("/") + 1:]
-        request[3] = std_out + request[3]
-        copy_or_move(request)
-        return "Rename Successful"
-    else:
-        return "File/Folder not found"
-
-
-def findAllExtensions(filePath):
+# find all extensions in given directory
+def findAllExtensions(file_path):
     extensions = set()
-    for f in os.listdir(filePath):
-        print(f)
-        if "." in f and isfile(join(filePath, f)):
+    for f in os.listdir(file_path):
+        if "." in f and isfile(join(file_path, f)):
             file_name, extension = splitext(f)
-            # extensions.add(f.split(".")[-1])
             if len(extension) > 0:
                 extensions.add(extension[1:])
     return extensions
-    # print(extensions)
 
-def organize(request):
-    folder = request[3]
-    new_request = ["find", folder]
-    location = find(new_request)
-    if request[1] == "everything":
-        extensions = findAllExtensions(location)
+# organize given folder_name with doc_type
+def organize(folder_name, doc_type):
+    response = ""
+    if doc_type == "everything":
+        # for all types of documents
+        extensions = findAllExtensions(folder_name)
         for ext in extensions:
-            ext_request = ["organize", ext, "in", request[3]]
-            subprocess.Popen([script_exec[ext_request[0]], ext_request[3], ext_request[1]], stdout=subprocess.PIPE)
+            response = subprocess.Popen([script_exec["organize"], folder_name, ext], stdout=subprocess.PIPE)
+            std_out = parse_std_out(response)
+            if std_out:
+                return std_out
     else:
-        subprocess.Popen([script_exec[request[0]], request[3], request[1]], stdout=subprocess.PIPE)
-    pass
+        # for single doc_type
+        response = subprocess.Popen([script_exec["organize"], folder_name, doc_type], stdout=subprocess.PIPE)
+        std_out = parse_std_out(response)
+        if std_out:
+            return std_out
+    return "Action Successful!"
 
-
-def main(request):
-    request = request.split(" ")
-
+# handle a user request
+def requestHandler(request):
     if request[0] == "find":
-        return "find",find(request)
+        return "find", find(request)
 
     if request[0] == "copy" or request[0] == "move":
-        return request[0], copy_or_move(request)
+        source_check = check_file_existence(request[1])
+        dest_check = check_file_existence(request[3])
+        if source_check is None:
+            return "Unable to find source file. Please input a valid source.", None
+        elif dest_check is None:
+            return "Unable to find destination folder. Please input a valid destination.", None
+        return "copy", (source_check, dest_check)
 
     if request[0] == "open":
-        return opencmd(request)
+        source_check = check_file_existence(request[1])
+        if source_check is None:
+            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+        return "open", source_check
 
     if request[0] == "rename":
-        return rename(request)
+        source_check = check_file_existence(request[1])
+        if source_check is None:
+            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+        return "rename", source_check
 
     if request[0] == "organize":
-        return organize(request)
+        source_check = check_file_existence(request[3])
+        if source_check is None:
+            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+        return "organize", (source_check, request[1])
+
+# primary entry point
+def main(request):
+    request = request.split(" ")
+    return requestHandler(request)

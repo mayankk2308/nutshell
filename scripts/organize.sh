@@ -4,11 +4,9 @@
 
 folder="$1"
 file_type="$2"
-folder_location=`./scripts/find.sh "$folder"`
-
-if [[ -d "$folder_location" ]]
+if [[ -d "$folder" ]]
 then
-    final_dest="$folder_location"/"$file_type"
-    mkdir "$final_dest"
-    mv "$folder_location"/*."$file_type" "$final_dest"
+    final_dest="$folder"/"$file_type"
+    mkdir -p "$final_dest"
+    mv "$folder"/*."$file_type" "$final_dest"
 fi
