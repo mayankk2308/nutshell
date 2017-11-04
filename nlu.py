@@ -32,16 +32,16 @@ def opencmd(request):
 
 def rename(request):
     request[0] = "find"
-    line = find(request)
-    if len(line) == 0:
+    std_out = find(request)
+    if len(std_out) == 0:
         print("File or folder not found")
         return
     else:
         request[0] = "move"
-        initial = line
-        line = line[0:line.rfind("/") + 1]
-        request[1] = initial[initial.rfind("/") + 1:]
-        request[3] = line + request[3]
+        source = std_out
+        std_out = std_out[0:std_out.rfind("/") + 1]
+        request[1] = source[source.rfind("/") + 1:]
+        request[3] = std_out + request[3]
         move(request)
 
 request = input()

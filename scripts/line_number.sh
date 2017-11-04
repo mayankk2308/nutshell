@@ -1,6 +1,6 @@
 #!/bin/sh
 # script line_number.sh
-# appends line numbers to a .txt file
+# appends line numbers to a .txt file and outputs result to "output_file"
 
 input_file="$1"
 output_file="$2"
