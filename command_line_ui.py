@@ -6,6 +6,7 @@ import nlu
 
 def handleFind(response):
     if response == 0:
+        app.scr
         app.infoBox("Error", "File/Folder not found")
     else:
         ctr = 1
@@ -14,9 +15,7 @@ def handleFind(response):
             output += str(ctr) +")" + " " + option + "\n\n"
             ctr += 1
         # output = output + output;
-        app.infoBox("File Path List", output)
-
-
+        app.infoBox("File Path List",output)
 
 def requestHandler(button):
     if button == "Submit":
@@ -24,6 +23,9 @@ def requestHandler(button):
         command,response = nlu.main(request)
         if command == "find":
             handleFind(response)
+
+
+
 
 
 
