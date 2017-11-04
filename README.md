@@ -2,7 +2,7 @@
 
 Written in **Python 3**, this program allows users to execute a set of **Unix** commands using natural language. We will also incorporate speech recognition, blurring the limitations of precise syntax programming.
 
-## Supported commands
+## Supported Commands
 
 The program supports the following commands:
 * **Find** - to find a file on disk (using unix **find**)
@@ -28,6 +28,16 @@ Open HelloWorld.java
 ```
 
 This will open the first occurrence of the found file in user space.
+
+```
+Rename HelloWorld.java to World.java
+```
+
+This will rename the first occurrence of the found file in user space.
+
+## Logging
+
+We will also implement a logging mechanism so that the user may see the underlying changes made to the system using the program.
 
 ## License
 
