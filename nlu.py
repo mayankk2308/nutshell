@@ -2,71 +2,62 @@ import sys
 import subprocess
 import shlex
 
-mapping = {}
-mapping["find"] = "scripts/find.sh"
-mapping["copy"] = "scripts/copy.sh"
-mapping["move"] = "scripts/move.sh"
-mapping["open"] = "scripts/open.sh"
+script_exec = {}
+script_exec["find"] = "scripts/find.sh"
+script_exec["copy"] = "scripts/copy.sh"
+script_exec["move"] = "scripts/move.sh"
+script_exec["open"] = "scripts/open.sh"
 
+def find(request):
+    proc = subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
+    std_out = proc.stdout.readline().rstrip().decode("utf-8")
+    print(std_out)
+    return std_out
 
+def copy(request):
+    process_response = subprocess.Popen([script_exec[request[0]], request[1], request[3]], stdout=subprocess.PIPE)
 
-def find(x):
-    proc = subprocess.Popen([mapping[x[0]], x[1]], stdout=subprocess.PIPE)
-    line = proc.stdout.readline().rstrip().decode("utf-8")
-    print(line)
-    return line
+def move(request):
+    process_response = subprocess.Popen([script_exec[request[0]], request[1], request[3]], stdout=subprocess.PIPE)
 
-def copy(x):
-    proc = subprocess.Popen([mapping[x[0]], x[1], x[3]], stdout=subprocess.PIPE)
+def opencmd(request):
+    request[0] = "find"
+    std_out = find(request)
+    if len(std_out) == 0:
+        print("File or folder not found")
+        return
+    else:
+        request[0] = "open"
+        subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
 
-def move(x):
-    proc = subprocess.Popen([mapping[x[0]], x[1], x[3]], stdout=subprocess.PIPE)
-
-def opencmd(x):
-    x[0] = "find"
-    line = find(x)
+def rename(request):
+    request[0] = "find"
+    line = find(request)
     if len(line) == 0:
         print("File or folder not found")
         return
     else:
-        x[0] = "open"
-        subprocess.Popen([mapping[x[0]], x[1]], stdout=subprocess.PIPE)
-
-def rename(x):
-    x[0] = "find"
-    line = find(x)
-    if len(line) == 0:
-        print("File or folder not found")
-        return
-    else:
-        x[0] = "move"
+        request[0] = "move"
         initial = line
         line = line[0:line.rfind("/") + 1]
-        x[1] = initial[initial.rfind("/") + 1:]
-        x[3] = line + x[3]
-        move(x)
+        request[1] = initial[initial.rfind("/") + 1:]
+        request[3] = line + request[3]
+        move(request)
 
+request = input()
+request = request.split(" ")
 
+if request[0] == "find":
+    find(request)
 
-x = input()
-x = x.split(" ")
-# print(x)
-if x[0] == "find":
-    find(x)
+if request[0] == "copy":
+    copy(request)
 
-if x[0] == "copy":
-    copy(x)
+if request[0] == "move":
+    move(request)
 
-if x[0] == "move":
-    move(x)
+if request[0] == "open":
+    opencmd(request)
 
-if x[0] == "open":
-    opencmd(x)
-
-if x[0] == "rename":
-    rename(x)
-
-
-
-
-
+if request[0] == "rename":
+    rename(request)
