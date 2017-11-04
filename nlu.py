@@ -25,7 +25,7 @@ def parse_std_out(response):
 def find(file_name):
     response = subprocess.Popen([script_exec["find"], file_name], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
-    return "File or folder not found." if not std_out else std_out
+    return None if not std_out else std_out
 
 # copy or move source file to given destination
 def copy_or_move(cmd, source, destination):
@@ -78,7 +78,11 @@ def organize(folder_name, doc_type):
 # handle a user request
 def requestHandler(request):
     if request[0] == "find":
-        return "find", find(request)
+        return_code = find(request[1])
+        if return_code is None:
+            return "Unable to find file/folder.", None
+        else:
+            return "find", return_code
 
     elif request[0] == "copy" or request[0] == "move":
         source_check = find(request[1])
