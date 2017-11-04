@@ -25,15 +25,27 @@ def move(x):
 def opencmd(x):
     x[0] = "find"
     line = find(x)
-    print("a", len(line))
     if len(line) == 0:
-        print("b", len(line))
         print("File or folder not found")
         return
     else:
-        print("in else ")
         x[0] = "open"
-        proc = subprocess.Popen([mapping[x[0]], x[1]], stdout=subprocess.PIPE)
+        subprocess.Popen([mapping[x[0]], x[1]], stdout=subprocess.PIPE)
+
+def rename(x):
+    x[0] = "find"
+    line = find(x)
+    if len(line) == 0:
+        print("File or folder not found")
+        return
+    else:
+        x[0] = "move"
+        initial = line
+        line = line[0:line.rfind("/") + 1]
+        x[1] = initial[initial.rfind("/") + 1:]
+        x[3] = line + x[3]
+        move(x)
+
 
 
 x = input()
@@ -50,6 +62,9 @@ if x[0] == "move":
 
 if x[0] == "open":
     opencmd(x)
+
+if x[0] == "rename":
+    rename(x)
 
 
 
