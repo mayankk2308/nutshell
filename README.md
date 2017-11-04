@@ -7,12 +7,9 @@ Written in **Python 3**, this program allows users to execute a set of **Unix** 
 The program supports the following commands:
 * **Find** - to find a file on disk (using unix **find**)
 * **Move** - to move one file or directory to another (using unix **mv**)
-* **Move All** - to move more than one file to destination (using unix **mv**)
 * **Rename** - to rename file (using unix **mv**)
 * **Copy** - to copy one file to destination (using unix **rsync**)
-* **Copy All** - to copy multiple files to destination (using unix **rsync**)
 * **Open** - to open a file (using unix **open**)
-* **Go To** - to go to folder in GUI (using unix **open**)
 
 ## Examples
 
