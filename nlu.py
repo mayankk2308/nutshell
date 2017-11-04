@@ -41,7 +41,7 @@ def opencmd(unique_filepath):
 
 # rename source_name file with source_new_name
 def rename(source_name, source_new_name):
-    directory = source_name[0:source_name.rfind("/") + 1]
+    directory = source_name[0 : source_name.rfind("/") + 1]
     source_new_name = directory + source_new_name
     return copy_or_move("move", source_name, source_new_name)
 
