@@ -14,9 +14,14 @@ script_exec["organize"] = "scripts/organize.sh"
 
 def find(request):
     response = subprocess.Popen([script_exec[request[0]], request[1]], stdout=subprocess.PIPE)
-    std_out = response.stdout.readline().rstrip().decode("utf-8")
-    print(std_out)
-    return std_out
+    options = []
+    while True:
+        line = response.stdout.readline()
+        if line != b'':
+            options.append(line.rstrip().decode("utf-8"))
+        else:
+            break
+    return 0 if len(options) == 0 else options
 
 
 def copy_or_move(request):
@@ -47,6 +52,9 @@ def rename(request):
         request[1] = source[source.rfind("/") + 1:]
         request[3] = std_out + request[3]
         copy_or_move(request)
+        return "Rename Successful"
+    else:
+        return "File/Folder not found"
 
 
 def findAllExtensions(filePath):
@@ -75,20 +83,20 @@ def organize(request):
     pass
 
 
-request = input()
-request = request.split(" ")
+def main(request):
+    request = request.split(" ")
 
-if request[0] == "find":
-    find(request)
+    if request[0] == "find":
+        return "find",find(request)
 
-if request[0] == "copy" or request[0] == "move":
-    copy_or_move(request)
+    if request[0] == "copy" or request[0] == "move":
+        return copy_or_move(request)
 
-if request[0] == "open":
-    opencmd(request)
+    if request[0] == "open":
+        return opencmd(request)
 
-if request[0] == "rename":
-    rename(request)
+    if request[0] == "rename":
+        return rename(request)
 
-if request[0] == "organize":
-    organize(request)
+    if request[0] == "organize":
+        return organize(request)
