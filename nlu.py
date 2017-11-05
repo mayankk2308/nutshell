@@ -121,7 +121,6 @@ def request_handler(request):
     else:
         return "Syntax currently not supported", None
 
-
 # primary entry point
 def main(request):
     request = request.split(" ")
