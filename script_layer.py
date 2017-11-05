@@ -3,15 +3,15 @@ import os
 
 class script_manager(object):
 
+    # parse command and extract expected arguments
     def parse_command(self, command, expected_args):
-        # string parsing
         quotes = 0
+        command += " "
         current_arg = ""
         arg_count = -1
         script, args = "", []
         for character in command:
             if character is " " and quotes % 2 == 0:
-                # print(current_arg)
                 arg_count += 1
                 if arg_count == 0:
                     script = current_arg
@@ -25,8 +25,8 @@ class script_manager(object):
 
         return (script, args)
 
+    # primary command execution handler
     def execute(self, command, expected_args):
-        # primary command execution
         script, args = self.parse_command(command, expected_args)
         if len(args) is not expected_args: return
         print(script)
