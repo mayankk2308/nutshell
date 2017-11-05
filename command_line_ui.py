@@ -4,7 +4,7 @@ import log_service
 
 log = log_service.log_service()
 
-def findHandler(output):
+def find_handler(output):
     output_destinations = ""
     line_number = 1
     for line in output:
@@ -14,41 +14,41 @@ def findHandler(output):
     app.infoBox("Locations", output_destinations)
 
 
-def openHandler(output):
+def open_handler(output):
     response = nlu.opencmd(output[0])
     log.write_data(response)
     app.infoBox("Response", response)
 
 
-def copyHandler(output):
+def copy_handler(output):
     src, dest = output
     response = nlu.copy_or_move("copy", src[0], dest[0])
     log.write_data(response)
     app.infoBox("Response", response)
 
 
-def moveHandler(output):
+def move_handler(output):
     src, dest = output
     response = nlu.copy_or_move("move", src[0], dest[0])
     log.write_data(response)
     app.infoBox("Response", response)
 
 
-def renameHandler(output):
+def rename_handler(output):
     src, new_name = output
     response = nlu.rename(src[0], new_name)
     log.write_data(response)
     app.infoBox("Response", response)
 
 
-def organizeHandler(output):
+def organize_handler(output):
     src, doc_type = output
     response = nlu.organize(src[0], doc_type)
     log.write_data(response)
     app.infoBox("Response", response)
 
 
-def requestHandler(button):
+def request_handler(button):
     if button == "Submit":
         user_command = app.getEntry("Enter your Command: ");
         log.write_data(user_command)
@@ -57,25 +57,25 @@ def requestHandler(button):
             app.infoBox("Error", command_name)
             log.write_data(command_name)
         elif command_name == "find":
-            findHandler(output)
+            find_handler(output)
 
         elif command_name == "open":
-            openHandler(output)
+            open_handler(output)
 
         elif command_name == "copy":
-            copyHandler(output)
+            copy_handler(output)
 
         elif command_name == "move":
-            moveHandler(output)
+            move_handler(output)
 
         elif command_name == "rename":
-            renameHandler(output)
+            rename_handler(output)
 
         elif command_name == "organize":
-            organizeHandler(output)
+            organize_handler(output)
 
 app = gui()
 app.addLabel("Title", "Natural Language Unix")
 app.addLabelEntry("Enter your Command: ")
-app.addButtons(["Submit"], requestHandler)
+app.addButtons(["Submit"], request_handler)
 app.go()

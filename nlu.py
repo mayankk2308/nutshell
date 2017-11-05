@@ -28,6 +28,7 @@ def find_slow(file_name):
     std_out = parse_std_out(response)
     return None if not std_out else std_out
 
+# find path for file_name
 def find(file_name):
     response = subprocess.Popen([script_exec["find"], file_name], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
@@ -82,7 +83,7 @@ def organize(folder_name, doc_type):
 
 
 # handle a user request
-def requestHandler(request):
+def request_handler(request):
     if request[0] == "find":
         return_code = find_slow(request[1])
         if return_code is None:
@@ -124,4 +125,4 @@ def requestHandler(request):
 # primary entry point
 def main(request):
     request = request.split(" ")
-    return requestHandler(request)
+    return request_handler(request)
