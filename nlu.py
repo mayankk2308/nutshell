@@ -10,6 +10,7 @@ script_exec["copy"] = "scripts/copy.sh"
 script_exec["move"] = "scripts/move.sh"
 script_exec["open"] = "scripts/open.sh"
 script_exec["organize"] = "scripts/organize.sh"
+script_exec["find_slow"] = "scripts/find_slow.sh"
 
 # parse standard output
 def parse_std_out(response):
@@ -22,6 +23,11 @@ def parse_std_out(response):
     return full_std_out
 
 # find absolute path of possible file_name matches
+def findSlow(file_name):
+    response = subprocess.Popen([script_exec["find_slow"], file_name], stdout=subprocess.PIPE)
+    std_out = parse_std_out(response)
+    return None if not std_out else std_out
+
 def find(file_name):
     response = subprocess.Popen([script_exec["find"], file_name], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
@@ -78,7 +84,8 @@ def organize(folder_name, doc_type):
 # handle a user request
 def requestHandler(request):
     if request[0] == "find":
-        return_code = find(request[1])
+        print(request[1])
+        return_code = findSlow(request[1])
         if return_code is None:
             return "Unable to find file/folder.", None
         else:
@@ -103,7 +110,7 @@ def requestHandler(request):
         source_check = find(request[1])
         if source_check is None:
             return "Unable to locate the file/folder. Please input a valid file/folder name.", None
-        return "rename", source_check
+        return "rename", (source_check, request[3])
 
     elif request[0] == "organize":
         source_check = find(request[3])
@@ -119,3 +126,4 @@ def requestHandler(request):
 def main(request):
     request = request.split(" ")
     return requestHandler(request)
+
