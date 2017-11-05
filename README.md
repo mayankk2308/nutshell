@@ -40,11 +40,11 @@ The application also includes a convenient logging system that maintains a syste
 
 To test the working of the project run the respective commands :
 
-* **Organize** - organize everything in TestOrganize  *or* organize pdf in TestOrganize *or* organize txt in TestOrganize *or* organize dmg in TestOrganize *or* organize png in TestOrganize
+* **Organize** - organize everything in TestOrganize  ***or*** organize pdf in TestOrganize ***or*** organize txt in TestOrganize ***or*** organize dmg in TestOrganize ***or*** organize png in TestOrganize
 * **Rename** - rename hack.txt to umass.txt
 * **Move** - move drag.txt to TestMove
 * **Copy** - copy back.txt to TestCopy
-* **Open** - open openthis.txt *or* open openthat.txt
+* **Open** - open openthis.txt ***or*** open openthat.txt
 
 ## License
 
