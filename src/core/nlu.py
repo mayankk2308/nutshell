@@ -2,15 +2,16 @@
 import subprocess
 import os
 from os.path import splitext, isfile, join
+from dir_const import UNIX_SCRIPTS_DIR, WIN_SCRIPTS_DIR
 
 # global parameters
 script_exec = {}
-script_exec["find"] = "scripts/find.sh"
-script_exec["copy"] = "scripts/copy.sh"
-script_exec["move"] = "scripts/move.sh"
-script_exec["open"] = "scripts/open.sh"
-script_exec["organize"] = "scripts/organize.sh"
-script_exec["find_slow"] = "scripts/find_slow.sh"
+script_exec["find"] = UNIX_SCRIPTS_DIR + "find.sh"
+script_exec["copy"] = UNIX_SCRIPTS_DIR + "copy.sh"
+script_exec["move"] = UNIX_SCRIPTS_DIR + "move.sh"
+script_exec["open"] = UNIX_SCRIPTS_DIR + "open.sh"
+script_exec["organize"] = UNIX_SCRIPTS_DIR + "organize.sh"
+script_exec["find_slow"] = UNIX_SCRIPTS_DIR + "find_slow.sh"
 
 # parse standard output
 def parse_std_out(response):
