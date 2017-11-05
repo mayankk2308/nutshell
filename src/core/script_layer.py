@@ -13,11 +13,9 @@ class script_manager(object):
         quotes = 0
         natural_command += " "
         current_arg = ""
-        arg_count = -1
         args = []
         for character in natural_command:
             if character is " " and quotes % 2 == 0:
-                arg_count += 1
                 args.append(current_arg)
                 current_arg = ""
             elif character is "'":
@@ -33,11 +31,13 @@ class script_manager(object):
         if len(args) - 1 is not expected_args: return "Invalid arguments."
         args[0] = self.parse_to_std_command(args[0])
         response = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        output = self.process_response(response)
-        print(output)
-        return "Failed to retrieve output. An error occurred." if output is None else output
+        return self.process_response(response)
 
     # process standard I/O
     def process_response(self, response):
         stdout, stderr = response.communicate()
         return stderr.rstrip().decode("utf-8") if stderr else stdout.rstrip().decode("utf-8")
+
+# example
+# manager = script_manager()
+# print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvda'", 1))
