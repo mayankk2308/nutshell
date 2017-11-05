@@ -23,7 +23,7 @@ def parse_std_out(response):
     return full_std_out
 
 # find absolute path of possible file_name matches
-def findSlow(file_name):
+def find_slow(file_name):
     response = subprocess.Popen([script_exec["find_slow"], file_name], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
     return None if not std_out else std_out
@@ -37,13 +37,13 @@ def find(file_name):
 def copy_or_move(cmd, source, destination):
     response = subprocess.Popen([script_exec[cmd], source, destination], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
-    return "Action Successful!" if not std_out else std_out
+    return cmd + " from " + source + " to " + destination + " successful" if not std_out else std_out
 
 # open file or directory at unique_filepath
 def opencmd(unique_filepath):
     response = subprocess.Popen([script_exec["open"], unique_filepath], stdout=subprocess.PIPE)
     std_out = parse_std_out(response)
-    return "Action Successful!" if not std_out else std_out
+    return "opened " + unique_filepath + " successfully" if not std_out else std_out
 
 # rename source_name file with source_new_name
 def rename(source_name, source_new_name):
@@ -78,16 +78,15 @@ def organize(folder_name, doc_type):
         std_out = parse_std_out(response)
         if std_out:
             return std_out
-    return "Action Successful!"
+    return "organizing " + doc_type + " successful in " + folder_name
 
 
 # handle a user request
 def requestHandler(request):
     if request[0] == "find":
-        print(request[1])
-        return_code = findSlow(request[1])
+        return_code = find_slow(request[1])
         if return_code is None:
-            return "Unable to find file/folder.", None
+            return "Unable to find file/folder", None
         else:
             return "find", return_code
 
@@ -95,27 +94,27 @@ def requestHandler(request):
         source_check = find(request[1])
         dest_check = find(request[3])
         if source_check is None:
-            return "Unable to find source file. Please input a valid source.", None
+            return "Unable to find source file. Please input a valid source", None
         elif dest_check is None:
-            return "Unable to find destination folder. Please input a valid destination.", None
-        return "copy", (source_check, dest_check)
+            return "Unable to find destination folder. Please input a valid destination", None
+        return request[0], (source_check, dest_check)
 
     elif request[0] == "open":
         source_check = find(request[1])
         if source_check is None:
-            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+            return "Unable to locate the file/folder. Please input a valid file/folder name", None
         return "open", source_check
 
     elif request[0] == "rename":
         source_check = find(request[1])
         if source_check is None:
-            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+            return "Unable to locate the file/folder. Please input a valid file/folder name", None
         return "rename", (source_check, request[3])
 
     elif request[0] == "organize":
         source_check = find(request[3])
         if source_check is None:
-            return "Unable to locate the file/folder. Please input a valid file/folder name.", None
+            return "Unable to locate the file/folder. Please input a valid file/folder name", None
         return "organize", (source_check, request[1])
 
     else:
@@ -126,4 +125,3 @@ def requestHandler(request):
 def main(request):
     request = request.split(" ")
     return requestHandler(request)
-

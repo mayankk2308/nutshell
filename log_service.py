@@ -3,7 +3,7 @@ import sys
 import shutil
 from time import localtime, strftime
 
-class logging_service(object):
+class log_service(object):
 
     def __init__(self):
         base_path = os.path.abspath(__file__)
@@ -18,7 +18,7 @@ class logging_service(object):
     def write_data(self, data):
         current_time = strftime("%Y-%m-%d---%H:%M:%S:\t", localtime())
         line = current_time + data
-        self.file.write(line)
+        self.file.write(line + "\n")
 
     def close_log(self):
         self.file.close()
