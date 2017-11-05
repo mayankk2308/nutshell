@@ -48,13 +48,13 @@ The application also includes a convenient logging system that maintains a syste
 
 ## Testing
 
-To test the working of the project run the respective commands :
+To test the working of the project, first run `testing.sh`, and then attempt to run the following commands:
 
-* **Organize** - organize everything in TestOrganize  ***or*** organize pdf in TestOrganize ***or*** organize txt in TestOrganize ***or*** organize dmg in TestOrganize ***or*** organize png in TestOrganize
-* **Rename** - rename hack.txt to umass.txt
-* **Move** - move drag.txt to TestMove
-* **Copy** - copy back.txt to TestCopy
-* **Open** - open openthis.txt ***or*** open openthat.txt
+* **Organize** - `organize everything in TestOrganize`  ***or*** `organize pdf in TestOrganize` ***or*** `organize txt in TestOrganize` ***or*** `organize dmg in TestOrganize` ***or*** `organize png in TestOrganize`
+* **Rename** - `rename hack.txt to umass.txt`
+* **Move** - `move drag.txt to TestMove`
+* **Copy** - `copy back.txt to TestCopy`
+* **Open** - `open openthis.txt` ***or*** `open openthat.txt`
 
 ## License
 
