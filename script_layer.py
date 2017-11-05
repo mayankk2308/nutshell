@@ -33,6 +33,3 @@ class script_manager(object):
     def process_response(self, response):
         stdout, stderr = response.communicate()
         return stderr.rstrip().decode("utf-8") if stderr else stdout.rstrip().decode("utf-8")
-
-manager = script_manager()
-print(manager.execute("scripts/find.sh purge-nvda.sh", 1))
