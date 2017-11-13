@@ -36,8 +36,12 @@ class script_manager(object):
     # process standard I/O
     def process_response(self, response):
         stdout, stderr = response.communicate()
-        return stderr.rstrip().decode("utf-8") if stderr else stdout.rstrip().decode("utf-8")
+        stdout = stdout.rstrip().decode("utf-8")
+        stderr = stderr.rstrip().decode("utf-8")
+        error_code = 1 if stderr else 0
+        stdout = "Action successful." if not stdout else stdout
+        return (error_code, stderr if error_code is 1 else stdout)
 
 # example
 # manager = script_manager()
-# print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvda'", 1))
+# print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvdaddd'", 1))
