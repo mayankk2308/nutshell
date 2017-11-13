@@ -28,7 +28,7 @@ class script_manager(object):
     # primary command execution handler which returns a response (output or error)
     def execute(self, natural_command, expected_args):
         args = self.parse_natural_command(natural_command)
-        if len(args) - 1 is not expected_args: return "Invalid arguments."
+        if len(args) - 1 is not expected_args: return (1, "Invalid arguments provided. Please recheck your input.")
         args[0] = self.parse_to_std_command(args[0])
         response = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         return self.process_response(response)
