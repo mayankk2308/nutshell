@@ -1,5 +1,4 @@
-import subprocess
-import os
+from subprocess import Popen, PIPE
 from supported_commands import AVAILABLE_COMMANDS
 
 class script_manager(object):
@@ -30,7 +29,7 @@ class script_manager(object):
         args = self.parse_natural_command(natural_command)
         if len(args) - 1 is not expected_args: return (1, "Invalid arguments provided. Please recheck your input.")
         args[0] = self.parse_to_std_command(args[0])
-        response = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        response = Popen(args, stdout=PIPE, stderr=PIPE)
         return self.process_response(response)
 
     # process standard I/O
@@ -43,5 +42,5 @@ class script_manager(object):
         return (error_code, stderr if error_code is 1 else stdout)
 
 # example
-# manager = script_manager()
-# print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvdaddd'", 1))
+manager = script_manager()
+print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvda'", 1))
