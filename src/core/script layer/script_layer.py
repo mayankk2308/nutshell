@@ -1,19 +1,19 @@
 from subprocess import Popen, PIPE
-from supported_commands import AVAILABLE_COMMANDS
+from supported_commands import AVAILABLE_COMMANDS, EXPECTED_ARGS
 
 class script_manager(object):
 
     # retrieve appropriate command
-    def parse_to_std_command(self, command):
-        return AVAILABLE_COMMANDS[command]
+    def parse_to_std_command(self, unix_command):
+        return AVAILABLE_COMMANDS[unix_command] if unix_command in AVAILABLE_COMMANDS.keys() else None
 
     # parse command and extract expected arguments
-    def parse_natural_command(self, natural_command):
+    def parse_natural_command(self, unix_command):
         quotes = 0
-        natural_command += " "
+        unix_command += " "
         current_arg = ""
         args = []
-        for character in natural_command:
+        for character in unix_command:
             if character is " " and quotes % 2 == 0:
                 args.append(current_arg)
                 current_arg = ""
@@ -24,23 +24,33 @@ class script_manager(object):
 
         return args
 
-    # primary command execution handler which returns a response (output or error)
-    def execute(self, natural_command, expected_args):
-        args = self.parse_natural_command(natural_command)
-        if len(args) - 1 is not expected_args: return (1, "Invalid arguments provided. Please recheck your input.")
+    # primary command execution handler that calls back provided completion handler
+    def execute(self, unix_command, completion_handler):
+        args = self.parse_natural_command(unix_command.strip())
+        instruction = args[0]
         args[0] = self.parse_to_std_command(args[0])
+        if args[0] is None:
+            return (255, "This command is invalid or not currently supported.")
+        if len(args) - 1 is not EXPECTED_ARGS[instruction]:
+            return (254, "Invalid arguments provided for command. Please recheck your input.")
         response = Popen(args, stdout=PIPE, stderr=PIPE)
-        return self.process_response(response)
+        error_code, response_message = self.process_response(response)
+        completion_handler(error_code, response_message)
 
     # process standard I/O
     def process_response(self, response):
         stdout, stderr = response.communicate()
-        stdout = stdout.rstrip().decode("utf-8")
-        stderr = stderr.rstrip().decode("utf-8")
+        stdout = stdout.strip().decode("utf-8")
+        stderr = stderr.strip().decode("utf-8")
         error_code = 1 if stderr else 0
         stdout = "Action successful." if not stdout else stdout
         return (error_code, stderr if error_code is 1 else stdout)
 
 # example
 manager = script_manager()
-print(manager.execute("open '/Users/Mayank/Documents/Open Source Projects/purge-nvda'", 1))
+
+def test_handler(error, message):
+    print(error)
+    print(message)
+    
+manager.execute("open '/Applications'", test_handler)
