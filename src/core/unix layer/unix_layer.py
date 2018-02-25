@@ -1,5 +1,6 @@
 from log_service import log_service
 from subprocess import Popen, PIPE
+from output_codes import OCODE
 from supported_commands import AVAILABLE_COMMANDS, EXPECTED_ARGS
 
 class unix_manager(object):
@@ -34,9 +35,11 @@ class unix_manager(object):
         instruction = args[0]
         args[0] = self.parse_to_std_command(args[0])
         if args[0] is None:
-            return (255, "This command is invalid or not currently supported.")
+            completion_handler(255, OCODE[255])
+            return
         if len(args) - 1 is not EXPECTED_ARGS[instruction]:
-            return (254, "Invalid arguments provided for command. Please recheck your input.")
+            completion_handler(254, OCODE[254])
+            return
         response = Popen(args, stdout=PIPE, stderr=PIPE)
         error_code, response_message = self.process_response(response)
         completion_handler(error_code, response_message)
@@ -47,7 +50,7 @@ class unix_manager(object):
         stdout = stdout.strip().decode("utf-8")
         stderr = stderr.strip().decode("utf-8")
         error_code = 1 if stderr else 0
-        stdout = "Action successful." if not stdout else stdout
+        stdout = OCODE[0] if not stdout else stdout
         return (error_code, stderr if error_code is 1 else stdout)
 
 # example
@@ -57,4 +60,4 @@ def test_handler(error, message):
     print(error)
     print(message)
 
-manager.execute("open '/Applications'", test_handler)
+manager.execute("open", test_handler)
