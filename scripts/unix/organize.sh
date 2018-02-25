@@ -9,4 +9,7 @@ then
     final_dest="$folder"/"$file_type"
     mkdir -p "$final_dest"
     mv "$folder"/*."$file_type" "$final_dest"
+    exit 0
+else
+  exit 252
 fi
