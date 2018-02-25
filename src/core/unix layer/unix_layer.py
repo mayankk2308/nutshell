@@ -1,3 +1,4 @@
+import threading
 from log_service import log_service
 from subprocess import Popen, PIPE
 from output_codes import OCODE
@@ -19,7 +20,7 @@ class unix_manager(object):
         current_arg = ""
         args = []
         for character in unix_command:
-            if character is " " and quotes % 2 == 0:
+            if character is " " and quotes % 2 is 0:
                 args.append(current_arg)
                 current_arg = ""
             elif character is "'":
@@ -53,11 +54,12 @@ class unix_manager(object):
         stdout = OCODE[0] if not stdout else stdout
         return (error_code, stderr if error_code is 1 else stdout)
 
-# example
+# example + testing
 manager = unix_manager()
 
 def test_handler(error, message):
     print(error)
     print(message)
 
-manager.execute("open", test_handler)
+t = threading.Thread(target=manager.execute, args=("open /Applications", test_handler))
+t.start()
