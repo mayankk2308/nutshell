@@ -1,7 +1,11 @@
+from log_service import log_service
 from subprocess import Popen, PIPE
 from supported_commands import AVAILABLE_COMMANDS, EXPECTED_ARGS
 
 class script_manager(object):
+
+    # allocate logging service
+    logger = log_service()
 
     # retrieve appropriate command
     def parse_to_std_command(self, unix_command):
@@ -52,5 +56,5 @@ manager = script_manager()
 def test_handler(error, message):
     print(error)
     print(message)
-    
+
 manager.execute("open '/Applications'", test_handler)
