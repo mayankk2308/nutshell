@@ -9,8 +9,8 @@ from supported_commands import AVAILABLE_COMMANDS, EXPECTED_ARGS
 
 class unix_manager(object):
 
-    # allocate logging service
-    logger = log_service()
+    def __init__(self):
+        self.logger = log_service()
 
     # retrieve appropriate command
     def parse_to_std_command(self, unix_command):
@@ -35,17 +35,21 @@ class unix_manager(object):
 
     # primary command execution handler that calls back provided completion handler
     def execute(self, unix_command, completion_handler):
+        self.logger.write_data("cmd: " + unix_command)
         args = self.parse_natural_command(unix_command.strip())
         instruction = args[0]
         args[0] = self.parse_to_std_command(args[0])
         if args[0] is None:
+            self.logger.write_data("err: " + str(255) + " " + OCODE[255])
             completion_handler(255, OCODE[255])
             return
         if len(args) - 1 is not EXPECTED_ARGS[instruction]:
+            self.logger.write_data("err: " + str(254) + " " + OCODE[254])
             completion_handler(254, OCODE[254])
             return
         response = Popen(args, stdout=PIPE, stderr=PIPE)
         error_code, response_message = self.process_response(response)
+        self.logger.write_data(str(error_code) + " " + response_message)
         completion_handler(error_code, response_message)
 
     # process standard I/O
@@ -57,6 +61,14 @@ class unix_manager(object):
         stdout = OCODE[0] if not stdout else stdout
         return (error_code, stderr if error_code is 1 else stdout)
 
+    # explicit program termination notifier
+    def terminate_unix_layer(self):
+        self.logger.close_log()
+
+    # destroy logging history
+    def destroy_logs(self):
+        self.logger.clear_all_logs()
+
 # example + testing
 manager = unix_manager()
 
@@ -65,4 +77,5 @@ def test_handler(error, message):
     print(message)
 
 thread_manager = thread_manager()
-thread_manager.background_exec(manager.execute, "open /Applications", test_handler)
+thread_manager.background_exec(manager.execute, "open", test_handler)
+manager.destroy_logs()
