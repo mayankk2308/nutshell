@@ -1,4 +1,7 @@
-import threading
+import sys
+from directory_service import MANAGEMENT_DIR
+sys.path.append(MANAGEMENT_DIR)
+from thread_manager import thread_manager
 from log_service import log_service
 from subprocess import Popen, PIPE
 from output_codes import OCODE
@@ -61,5 +64,5 @@ def test_handler(error, message):
     print(error)
     print(message)
 
-t = threading.Thread(target=manager.execute, args=("open /Applications", test_handler))
-t.start()
+thread_manager = thread_manager()
+thread_manager.background_exec(manager.execute, "open /Applications", test_handler)
