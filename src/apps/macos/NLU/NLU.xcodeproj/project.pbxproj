@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C42043D85800ECA9EA /* AppDelegate.swift */; };
-		A87F55C72043D85800ECA9EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C62043D85800ECA9EA /* ViewController.swift */; };
+		A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */; };
 		A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C82043D85800ECA9EA /* NLU.xcdatamodeld */; };
 		A87F55CC2043D85800ECA9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A87F55CB2043D85800ECA9EA /* Assets.xcassets */; };
 		A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87F55CD2043D85800ECA9EA /* Main.storyboard */; };
 		A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */; };
+		A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A87F55C12043D85800ECA9EA /* NLU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87F55C42043D85800ECA9EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A87F55C62043D85800ECA9EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryViewController.swift; sourceTree = "<group>"; };
 		A87F55C92043D85800ECA9EA /* NLU.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NLU.xcdatamodel; sourceTree = "<group>"; };
 		A87F55CB2043D85800ECA9EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A87F55CE2043D85800ECA9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A87F55D02043D85800ECA9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A87F55D12043D85800ECA9EA /* NLU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLU.entitlements; sourceTree = "<group>"; };
 		A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,7 @@
 		A87F55C32043D85800ECA9EA /* NLU */ = {
 			isa = PBXGroup;
 			children = (
-				A87F55D82043D96C00ECA9EA /* View Controllers */,
+				A87F55D82043D96C00ECA9EA /* User Interface */,
 				A87F55D72043D88600ECA9EA /* Storyboard & Config */,
 				A87F55D92043D9A000ECA9EA /* Data Model */,
 			);
@@ -76,12 +78,13 @@
 			name = "Storyboard & Config";
 			sourceTree = "<group>";
 		};
-		A87F55D82043D96C00ECA9EA /* View Controllers */ = {
+		A87F55D82043D96C00ECA9EA /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				A87F55C62043D85800ECA9EA /* ViewController.swift */,
+				A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */,
+				A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */,
 			);
-			name = "View Controllers";
+			name = "User Interface";
 			sourceTree = "<group>";
 		};
 		A87F55D92043D9A000ECA9EA /* Data Model */ = {
@@ -164,7 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A87F55C72043D85800ECA9EA /* ViewController.swift in Sources */,
+				A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */,
+				A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */,
 				A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */,
 				A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */,
 				A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */,
