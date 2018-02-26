@@ -3,13 +3,25 @@
 #
 
 from pprint import pprint
+
+# from nltk.corpus import stopwords
+# print(len(stopwords.words('english')))
+#
+def pre_process(command):
+    command = command.lower()
+    tokens = command.split()
+    return tokens
+
+
+
 # The rules defining the break down of a command and all of its constituents
 command_text = """
-
+C -> Find_lex file_folder_lex
 C -> Find_lex file_folder_lex?misc
 file_folder_lex?misc -> file_folder_lex misc
 misc -> misc misc
 misc -> preposition misc
+file_folder_lex -> file_folder_lex file_folder_lex
 C -> Move_lex file_folder_lex?preposition?file_folder_lex
 C -> Move_lex file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex
 C -> Rename file_folder_lex?preposition?file_folder_lex
@@ -57,7 +69,7 @@ for line in command_text.strip().split("\n"):
 def cky_acceptance(command):
 
     global command_rules, command_lexicon
-
+    command = pre_process(command)
     N = len(command)
     cells = {}
     for i in range(N):
@@ -74,6 +86,7 @@ def cky_acceptance(command):
                 entry.append(key)
         if not entry:
             entry.append('misc')
+            entry.append('file_folder_lex')
         cells[(i, i + 1)] += entry
 
     for diff in range(2, N + 1):
@@ -90,30 +103,11 @@ def cky_acceptance(command):
         return True
     return False
 
-# Working and should be working
-print(cky_acceptance(["open", "mydog.txt"]))
-print(cky_acceptance(["launch", "mydog.txt"]))
-print(cky_acceptance(["locate", "mydog.txt"]))
-print(cky_acceptance(["find", "mydog.txt"]))
-print(cky_acceptance(["move", "mydog.txt", "to", "Trash"]))
-print(cky_acceptance(["move", "mydog.txt", "from", "Downloads","to", "Trash"]))
-print(cky_acceptance(["organize", "everything","in", "Downloads"]))
-print(cky_acceptance(["copy", "mydog.txt", "to", "Trash"]))
-print(cky_acceptance(["copy", "mydog.txt", "from", "Downloads","to", "Trash"]))
-print(cky_acceptance(["copy", "mydog.txt", "to", "mycat.txt"]))
-print(cky_acceptance(["copy", "mydog.txt", "in", "Downloads","to", "cat.txt"]))
-print("##########################################################################")
-# Not working and shouldn't be working
-print(cky_acceptance(["boot", "mydog.txt"]))
-print(cky_acceptance(["organize", "Downloads"]))
-print(cky_acceptance(["find", "mydog.txt", "from", "my", "computer"]))
-print("##########################################################################")
-# # Working but should not be working
-print(cky_acceptance(["organize", "everything","to", "Downloads"]))
-print(cky_acceptance(["organize", "everything","from", "Downloads"]))
 
 
-
-
+# print("##########################################################################")
+# # # Working but should not be working
+# print(cky_acceptance(["organize", "everything","to", "Downloads"]))
+# print(cky_acceptance(["organize", "everything","from", "Downloads"]))
 
 
