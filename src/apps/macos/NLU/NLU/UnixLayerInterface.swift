@@ -33,6 +33,6 @@ import Foundation
     ///   - errorCode: result error code
     ///   - response: result data
     /// - Returns: `Void`
-    func execute(command: String, commandPath: String, completionHandler: (_ errorCode: Int,_ response: String) -> Void) -> Void
+    func execute(command: String, commandPaths: [String : String], expectedArgs: [String : Int], completionHandler: (_ errorCode: Int,_ response: String) -> Void) -> Void
     
 }

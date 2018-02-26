@@ -12,7 +12,6 @@ import Foundation
 /// Primary Unix Layer interaction management gateway
 class UnixLayerManager {
     
-    private let resourceManager = ScriptResourceManager()
     private let unixLayer = UnixLayer.instance()
     
     /// Handles requests to the Python unix layer
@@ -23,11 +22,7 @@ class UnixLayerManager {
     ///   - errorCode: error code on script completion
     ///   - response: result message on script completion
     func request(withCommand command: String, onCompletion completionHandler: (_ errorCode: Int,_ response: String) -> Void) {
-        guard let commandPath = resourceManager.retrieveCommandPath(forCommand: command) else {
-            completionHandler(255, unixLayer.retrieveOutputMessage(errorCode: 255))
-            return
-        }
-        unixLayer.execute(command: command, commandPath: commandPath, completionHandler: completionHandler)
+        unixLayer.execute(command: command, commandPaths: ScriptResourceManager.allCommandPaths(), expectedArgs: ScriptResourceManager.expectedArgs, completionHandler: completionHandler)
     }
     
 }

@@ -25,6 +25,7 @@
 		A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87F55CD2043D85800ECA9EA /* Main.storyboard */; };
 		A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */; };
 		A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */; };
+		A8E27A8C20449B31000598D7 /* UnixLayer.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A8E27A8B20449B31000598D7 /* UnixLayer.plugin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		A87F55D12043D85800ECA9EA /* NLU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLU.entitlements; sourceTree = "<group>"; };
 		A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWindowController.swift; sourceTree = "<group>"; };
+		A8E27A8B20449B31000598D7 /* UnixLayer.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UnixLayer.plugin; path = "../../Plugins/Unix Layer/dist/UnixLayer.plugin"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		A80811EF2044816300F72DCF /* Unix Layer */ = {
 			isa = PBXGroup;
 			children = (
+				A8E27A8B20449B31000598D7 /* UnixLayer.plugin */,
 				A80812052044873900F72DCF /* Scripts */,
 				A808121420448A3D00F72DCF /* Management */,
 			);
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A808120C2044873900F72DCF /* copy.sh in Resources */,
+				A8E27A8C20449B31000598D7 /* UnixLayer.plugin in Resources */,
 				A808120D2044873900F72DCF /* find.sh in Resources */,
 				A87F55CC2043D85800ECA9EA /* Assets.xcassets in Resources */,
 				A80812112044873900F72DCF /* organize.sh in Resources */,
