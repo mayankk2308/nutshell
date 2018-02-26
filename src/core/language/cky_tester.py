@@ -10,9 +10,9 @@ assert nlp.cky_acceptance("move mydog.txt from Downloads to Trash")
 assert nlp.cky_acceptance("organize everything in Downloads")
 assert nlp.cky_acceptance("copy mydog.txt to Trash")
 assert nlp.cky_acceptance("copy mydog.txt from Downloads to Trash")
-assert nlp.cky_acceptance("copy mydog.txt to mycat.txt")
+assert nlp.cky_acceptance("copy mydog.txt to my cat")
 assert nlp.cky_acceptance("copy mydog.txt in Downloads to cat.txt")
-assert nlp.cky_acceptance("find mydog.txt from my computer")
+assert nlp.cky_acceptance("find my.dog from my computer")
 
 # Not working and shouldn't be working
 assert not nlp.cky_acceptance("boot mydog.txt")

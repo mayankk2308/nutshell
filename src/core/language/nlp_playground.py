@@ -18,25 +18,40 @@ def pre_process(command):
 command_text = """
 C -> Find_lex file_folder_lex
 C -> Find_lex file_folder_lex?misc
+C -> Find_lex file_folder_lex?src
+C -> Find_lex file_folder_lex?loc
+C -> Open_lex file_folder_lex
+C -> Open_lex file_folder_lex?src
+C -> Open_lex file_folder_lex?loc
+C -> Open_lex file_folder_lex?spec
+C -> Move_lex file_folder_lex?dest
+C -> Move_lex file_folder_lex?src?dest
+C -> Rename file_folder_lex?dest
+C -> Rename file_folder_lex?loc?dest
+C -> Copy_lex file_folder_lex?dest
+C -> Copy_lex file_folder_lex?src?dest
+C -> Copy_lex file_folder_lex?loc?dest
+C -> Organize_lex type?loc
 file_folder_lex?misc -> file_folder_lex misc
 misc -> misc misc
 misc -> preposition misc
-file_folder_lex -> file_folder_lex file_folder_lex
-C -> Move_lex file_folder_lex?preposition?file_folder_lex
-C -> Move_lex file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex
-C -> Rename file_folder_lex?preposition?file_folder_lex
-C -> Rename file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex
-C -> Copy_lex file_folder_lex?preposition?file_folder_lex
-C -> Copy_lex preposition?file_folder_lex?preposition?file_folder_lex
-C -> Copy_lex file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex
-C -> Open_lex file_folder_lex
-C -> Open_lex file_folder_lex?preposition?file_folder_lex
-C -> Organize_lex type?preposition?file_folder_lex
-type?preposition?file_folder_lex -> extension_lex preposition?file_folder_lex
-file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex -> file_folder_lex preposition?file_folder_lex?preposition?file_folder_lex 
-preposition?file_folder_lex?preposition?file_folder_lex -> preposition file_folder_lex?preposition?file_folder_lex 
-file_folder_lex?preposition?file_folder_lex -> file_folder_lex preposition?file_folder_lex
-preposition?file_folder_lex -> preposition file_folder_lex
+file_folder_lex -> file_folder_lex file_folder_lex        
+file_folder_lex?src -> file_folder_lex src
+file_folder_lex?dest -> file_folder_lex dest
+file_folder_lex?loc -> file_folder_lex loc
+file_folder_lex?src?dest -> file_folder_lex src?dest
+src?dest -> src dest
+file_folder_lex?loc?dest -> file_folder_lex loc?dest
+loc?dest -> loc dest
+type?loc -> extension_lex loc
+file_folder_lex?spec -> file_folder_lex spec
+src -> from file_folder_lex
+src -> src file_folder_lex
+loc -> in file_folder_lex
+loc -> loc file_folder_lex
+dest -> to file_folder_lex
+dest -> dest file_folder_lex
+spec -> with application
 """
 
 
@@ -50,7 +65,11 @@ command_lexicon = {
     'Organize_lex': {'organize'},                      # synonyms of organize
     'file_folder_lex': {},                   # regex to match a string(file or folder name)
     'extension_lex': {'everything'},         # set of extensions supported in organize
-    'preposition': {'from', 'to', 'in'}
+    'from': {'from'},
+    'to': {'to'},
+    'in': {'in'},
+    'with': {'with'},
+    # 'preposition': {'from', 'to', 'in'}
 }
 
 
@@ -87,6 +106,7 @@ def cky_acceptance(command):
         if not entry:
             entry.append('misc')
             entry.append('file_folder_lex')
+            entry.append('application')
         cells[(i, i + 1)] += entry
 
     for diff in range(2, N + 1):
@@ -98,7 +118,7 @@ def cky_acceptance(command):
                             if rule[1] == (A, B):
                                 cells[(i, i + diff)] += [rule[0]]
 
-    # pprint(cells)
+    pprint(cells)
     if "C" in cells[(0, N)]:
         return True
     return False
