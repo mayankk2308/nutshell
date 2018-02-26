@@ -1,0 +1,27 @@
+Format:
+1. tokens separated by hyphens
+2. Follow terminology mentioned in the dictionary keys below
+
+    misc: miscellaneous words
+    preposition : {'from', 'to', 'in'}
+    Find_lex: {'find', 'locate'}
+    Move_lex: {'move', 'shift'}
+    Rename_lex: {'rename'}
+    Copy_lex: {'copy'}
+    Open_lex: {'open', 'launch'}
+    Organize_lex: {'organize'}
+    file_folder_lex: {}                   // supposed to be for files or folders
+    extension_lex: {'everything'}       // could contain other extensions as well
+
+3. Example :
+    find-mydog.txt-from-my-computer = Find_lex-file_folder_lex-preposition-misc-misc
+
+**********              Begin  Edge cases                 **********
+
+Find_lex-file_folder_lex-preposition-misc-misc
+
+
+
+
+**********              End  Edge cases                 **********
+

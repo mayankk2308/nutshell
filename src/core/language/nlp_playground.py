@@ -85,36 +85,35 @@ def cky_acceptance(command):
                             if rule[1] == (A, B):
                                 cells[(i, i + diff)] += [rule[0]]
 
-    pprint(cells)
+    # pprint(cells)
     if "C" in cells[(0, N)]:
         return True
     return False
 
 # Working and should be working
-# print(cky_acceptance(["open", "mydog.txt"]))
-# print(cky_acceptance(["launch", "mydog.txt"]))
-# print(cky_acceptance(["locate", "mydog.txt"]))
-# print(cky_acceptance(["find", "mydog.txt"]))
-# print(cky_acceptance(["move", "mydog.txt", "to", "Trash"]))
-# print(cky_acceptance(["move", "mydog.txt", "from", "Downloads","to", "Trash"]))
-# print(cky_acceptance(["organize", "everything","in", "Downloads"]))
-# print(cky_acceptance(["copy", "mydog.txt", "to", "Trash"]))
-# print(cky_acceptance(["copy", "mydog.txt", "from", "Downloads","to", "Trash"]))
-# print(cky_acceptance(["copy", "mydog.txt", "to", "mycat.txt"]))
-# print(cky_acceptance(["copy", "mydog.txt", "in", "Downloads","to", "cat.txt"]))
-# print("##########################################################################")
-# # Not working and shouldn't be working
-# print(cky_acceptance(["boot", "mydog.txt"]))
-# print(cky_acceptance(["organize", "Downloads"]))
-# print("##########################################################################")
-# # Working but should not be working
-# print(cky_acceptance(["organize", "everything","to", "Downloads"]))
-# print(cky_acceptance(["organize", "everything","from", "Downloads"]))
-
-
-
-
+print(cky_acceptance(["open", "mydog.txt"]))
+print(cky_acceptance(["launch", "mydog.txt"]))
+print(cky_acceptance(["locate", "mydog.txt"]))
+print(cky_acceptance(["find", "mydog.txt"]))
+print(cky_acceptance(["move", "mydog.txt", "to", "Trash"]))
+print(cky_acceptance(["move", "mydog.txt", "from", "Downloads","to", "Trash"]))
+print(cky_acceptance(["organize", "everything","in", "Downloads"]))
+print(cky_acceptance(["copy", "mydog.txt", "to", "Trash"]))
+print(cky_acceptance(["copy", "mydog.txt", "from", "Downloads","to", "Trash"]))
+print(cky_acceptance(["copy", "mydog.txt", "to", "mycat.txt"]))
+print(cky_acceptance(["copy", "mydog.txt", "in", "Downloads","to", "cat.txt"]))
+print("##########################################################################")
+# Not working and shouldn't be working
+print(cky_acceptance(["boot", "mydog.txt"]))
+print(cky_acceptance(["organize", "Downloads"]))
 print(cky_acceptance(["find", "mydog.txt", "from", "my", "computer"]))
+print("##########################################################################")
+# # Working but should not be working
+print(cky_acceptance(["organize", "everything","to", "Downloads"]))
+print(cky_acceptance(["organize", "everything","from", "Downloads"]))
 
-if '.' in  'myfiletxt':
-    print("works")
+
+
+
+
+
