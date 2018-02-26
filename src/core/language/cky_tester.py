@@ -17,3 +17,6 @@ assert nlp.cky_acceptance("find my.dog from my computer")
 # Not working and shouldn't be working
 assert not nlp.cky_acceptance("boot mydog.txt")
 assert not nlp.cky_acceptance("organize Downloads")
+assert not nlp.cky_acceptance("organize everything to Downloads")
+assert not nlp.cky_acceptance("organize everything from Downloads")
+

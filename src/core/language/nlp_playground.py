@@ -30,8 +30,6 @@ def pre_process(command):
     tokens = command.split()
     return tokens
 
-
-
 # Lexicon containing synonyms of command constituents
 command_lexicon = {
     'Find_lex': {'find', 'locate'},          # synonyms of find
@@ -87,13 +85,5 @@ def cky_acceptance(command):
     if "C" in cells[(0, N)]:
         return True
     return False
-
-
-
-# print("##########################################################################")
-# # # Working but should not be working
-# print(cky_acceptance(["organize", "everything","to", "Downloads"]))
-# print(cky_acceptance(["organize", "everything","from", "Downloads"]))
-
 
 populate_rules('command_grammar.txt')
