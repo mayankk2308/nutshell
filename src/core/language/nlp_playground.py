@@ -4,9 +4,27 @@
 
 from pprint import pprint
 
-# from nltk.corpus import stopwords
-# print(len(stopwords.words('english')))
-#
+# The rules defining the break down of a command and all of its constituents
+command_rules = list()
+
+
+def populate_rules(grammar_file):
+    global command_rules
+    with open(grammar_file) as f:
+        content = f.readlines()
+    command_text = [x.strip() for x in content]
+    command_rules = []
+    for line in command_text:
+        if line and line[0] != '#':
+            if not line.strip():
+                continue
+            left, right = line.split("->")
+            left = left.strip()
+            children = right.split()
+            rule = (left, tuple(children))
+            command_rules.append(rule)
+
+
 def pre_process(command):
     command = command.lower()
     tokens = command.split()
@@ -14,74 +32,21 @@ def pre_process(command):
 
 
 
-# The rules defining the break down of a command and all of its constituents
-command_text = """
-C -> Find_lex file_folder_lex
-C -> Find_lex file_folder_lex?misc
-C -> Find_lex file_folder_lex?src
-C -> Find_lex file_folder_lex?loc
-C -> Open_lex file_folder_lex
-C -> Open_lex file_folder_lex?src
-C -> Open_lex file_folder_lex?loc
-C -> Open_lex file_folder_lex?spec
-C -> Move_lex file_folder_lex?dest
-C -> Move_lex file_folder_lex?src?dest
-C -> Rename file_folder_lex?dest
-C -> Rename file_folder_lex?loc?dest
-C -> Copy_lex file_folder_lex?dest
-C -> Copy_lex file_folder_lex?src?dest
-C -> Copy_lex file_folder_lex?loc?dest
-C -> Organize_lex type?loc
-file_folder_lex?misc -> file_folder_lex misc
-misc -> misc misc
-misc -> preposition misc
-file_folder_lex -> file_folder_lex file_folder_lex        
-file_folder_lex?src -> file_folder_lex src
-file_folder_lex?dest -> file_folder_lex dest
-file_folder_lex?loc -> file_folder_lex loc
-file_folder_lex?src?dest -> file_folder_lex src?dest
-src?dest -> src dest
-file_folder_lex?loc?dest -> file_folder_lex loc?dest
-loc?dest -> loc dest
-type?loc -> extension_lex loc
-file_folder_lex?spec -> file_folder_lex spec
-src -> from file_folder_lex
-src -> src file_folder_lex
-loc -> in file_folder_lex
-loc -> loc file_folder_lex
-dest -> to file_folder_lex
-dest -> dest file_folder_lex
-spec -> with application
-"""
-
-
 # Lexicon containing synonyms of command constituents
 command_lexicon = {
-    'Find_lex': {'find', 'locate'},                          # synonyms of find
-    'Move_lex': {'move', 'shift'},                          # synonyms of move
-    'Rename_lex': {'rename'},                        # synonyms of rename
-    'Copy_lex': {'copy'},                          # synonyms of copy
-    'Open_lex': {'open', 'launch'},                          # synonyms of open
-    'Organize_lex': {'organize'},                      # synonyms of organize
+    'Find_lex': {'find', 'locate'},          # synonyms of find
+    'Move_lex': {'move', 'shift'},           # synonyms of move
+    'Rename_lex': {'rename'},                # synonyms of rename
+    'Copy_lex': {'copy'},                    # synonyms of copy
+    'Open_lex': {'open', 'launch'},          # synonyms of open
+    'Organize_lex': {'organize'},            # synonyms of organize
     'file_folder_lex': {},                   # regex to match a string(file or folder name)
     'extension_lex': {'everything'},         # set of extensions supported in organize
     'from': {'from'},
     'to': {'to'},
     'in': {'in'},
     'with': {'with'},
-    # 'preposition': {'from', 'to', 'in'}
 }
-
-
-
-command_rules = []
-for line in command_text.strip().split("\n"):
-    if not line.strip(): continue
-    left, right = line.split("->")
-    left = left.strip()
-    children = right.split()
-    rule = (left, tuple(children))
-    command_rules.append(rule)
 
 
 # return True or False depending whether the command is parseable by the grammar.
@@ -118,7 +83,7 @@ def cky_acceptance(command):
                             if rule[1] == (A, B):
                                 cells[(i, i + diff)] += [rule[0]]
 
-    pprint(cells)
+    # pprint(cells)
     if "C" in cells[(0, N)]:
         return True
     return False
@@ -131,3 +96,4 @@ def cky_acceptance(command):
 # print(cky_acceptance(["organize", "everything","from", "Downloads"]))
 
 
+populate_rules('command_grammar.txt')
