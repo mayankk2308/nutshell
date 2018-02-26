@@ -2,5 +2,6 @@
 # script copy.sh
 # open "item" with default OS application
 
-item="$1"
+flag="$1"
 open "$item"
+exit 0

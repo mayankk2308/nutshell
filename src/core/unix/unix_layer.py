@@ -55,11 +55,8 @@ class unix_manager(object):
     # process standard I/O
     def process_response(self, response):
         stdout, stderr = response.communicate()
-        stdout = stdout.strip().decode("utf-8")
-        stderr = stderr.strip().decode("utf-8")
-        error_code = 1 if stderr else 0
-        stdout = OCODE[0] if not stdout else stdout
-        return (error_code, stderr if error_code is 1 else stdout)
+        error_code = response.returncode
+        return (error_code, OCODE[error_code])
 
     # explicit program termination notifier
     def terminate_unix_layer(self):
@@ -77,5 +74,5 @@ def test_handler(error, message):
     print(message)
 
 thread_manager = thread_manager()
-thread_manager.background_exec(manager.execute, "open", test_handler)
-manager.destroy_logs()
+thread_manager.background_exec(manager.execute, "open '/Applications'", test_handler)
+# manager.destroy_logs()
