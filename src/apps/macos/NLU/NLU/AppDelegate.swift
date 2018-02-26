@@ -8,7 +8,6 @@
 
 import Cocoa
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -23,16 +22,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         let context = CoreDataStack.sharedInstance().persistentContainer.viewContext
-        
         if !context.commitEditing() {
             NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
             return .terminateCancel
         }
-        
         if !context.hasChanges {
             return .terminateNow
         }
-        
         do {
             try context.save()
         } catch {

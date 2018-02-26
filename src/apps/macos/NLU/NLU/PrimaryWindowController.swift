@@ -12,7 +12,6 @@ class PrimaryWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        
         if let window = window {
             window.titlebarAppearsTransparent = true
         }

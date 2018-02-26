@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A80811F12044817700F72DCF /* UnixLayerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F02044817700F72DCF /* UnixLayerInterface.swift */; };
+		A80811F32044840300F72DCF /* UnixLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F22044840300F72DCF /* UnixLayer.swift */; };
+		A80811F5204485C700F72DCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F4204485C700F72DCF /* main.swift */; };
+		A808120C2044873900F72DCF /* copy.sh in Resources */ = {isa = PBXBuildFile; fileRef = A80812062044873900F72DCF /* copy.sh */; };
+		A808120D2044873900F72DCF /* find.sh in Resources */ = {isa = PBXBuildFile; fileRef = A80812072044873900F72DCF /* find.sh */; };
+		A808120E2044873900F72DCF /* line_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = A80812082044873900F72DCF /* line_number.sh */; };
+		A808120F2044873900F72DCF /* move.sh in Resources */ = {isa = PBXBuildFile; fileRef = A80812092044873900F72DCF /* move.sh */; };
+		A80812102044873900F72DCF /* open.sh in Resources */ = {isa = PBXBuildFile; fileRef = A808120A2044873900F72DCF /* open.sh */; };
+		A80812112044873900F72DCF /* organize.sh in Resources */ = {isa = PBXBuildFile; fileRef = A808120B2044873900F72DCF /* organize.sh */; };
+		A80812132044877700F72DCF /* ScriptResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80812122044877700F72DCF /* ScriptResourceManager.swift */; };
+		A808121620448BA900F72DCF /* UnixLayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808121520448BA900F72DCF /* UnixLayerManager.swift */; };
 		A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C42043D85800ECA9EA /* AppDelegate.swift */; };
 		A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */; };
 		A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C82043D85800ECA9EA /* NLU.xcdatamodeld */; };
@@ -17,6 +28,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A80811F02044817700F72DCF /* UnixLayerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayerInterface.swift; sourceTree = "<group>"; };
+		A80811F22044840300F72DCF /* UnixLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayer.swift; sourceTree = "<group>"; };
+		A80811F4204485C700F72DCF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A80812062044873900F72DCF /* copy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = copy.sh; sourceTree = "<group>"; };
+		A80812072044873900F72DCF /* find.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = find.sh; sourceTree = "<group>"; };
+		A80812082044873900F72DCF /* line_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = line_number.sh; sourceTree = "<group>"; };
+		A80812092044873900F72DCF /* move.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = move.sh; sourceTree = "<group>"; };
+		A808120A2044873900F72DCF /* open.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = open.sh; sourceTree = "<group>"; };
+		A808120B2044873900F72DCF /* organize.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = organize.sh; sourceTree = "<group>"; };
+		A80812122044877700F72DCF /* ScriptResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptResourceManager.swift; sourceTree = "<group>"; };
+		A808121520448BA900F72DCF /* UnixLayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayerManager.swift; sourceTree = "<group>"; };
 		A87F55C12043D85800ECA9EA /* NLU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87F55C42043D85800ECA9EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +62,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A80811EF2044816300F72DCF /* Unix Layer */ = {
+			isa = PBXGroup;
+			children = (
+				A80812052044873900F72DCF /* Scripts */,
+				A808121420448A3D00F72DCF /* Management */,
+			);
+			name = "Unix Layer";
+			sourceTree = "<group>";
+		};
+		A80812052044873900F72DCF /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A80812062044873900F72DCF /* copy.sh */,
+				A80812072044873900F72DCF /* find.sh */,
+				A80812082044873900F72DCF /* line_number.sh */,
+				A80812092044873900F72DCF /* move.sh */,
+				A808120A2044873900F72DCF /* open.sh */,
+				A808120B2044873900F72DCF /* organize.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		A808121420448A3D00F72DCF /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				A80811F22044840300F72DCF /* UnixLayer.swift */,
+				A808121520448BA900F72DCF /* UnixLayerManager.swift */,
+				A80811F02044817700F72DCF /* UnixLayerInterface.swift */,
+				A80812122044877700F72DCF /* ScriptResourceManager.swift */,
+			);
+			name = Management;
+			sourceTree = "<group>";
+		};
 		A87F55B82043D85800ECA9EA = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +114,7 @@
 		A87F55C32043D85800ECA9EA /* NLU */ = {
 			isa = PBXGroup;
 			children = (
+				A80811EF2044816300F72DCF /* Unix Layer */,
 				A87F55D82043D96C00ECA9EA /* User Interface */,
 				A87F55D72043D88600ECA9EA /* Storyboard & Config */,
 				A87F55D92043D9A000ECA9EA /* Data Model */,
@@ -69,6 +125,7 @@
 		A87F55D72043D88600ECA9EA /* Storyboard & Config */ = {
 			isa = PBXGroup;
 			children = (
+				A80811F4204485C700F72DCF /* main.swift */,
 				A87F55C42043D85800ECA9EA /* AppDelegate.swift */,
 				A87F55CD2043D85800ECA9EA /* Main.storyboard */,
 				A87F55D12043D85800ECA9EA /* NLU.entitlements */,
@@ -155,8 +212,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A808120C2044873900F72DCF /* copy.sh in Resources */,
+				A808120D2044873900F72DCF /* find.sh in Resources */,
 				A87F55CC2043D85800ECA9EA /* Assets.xcassets in Resources */,
+				A80812112044873900F72DCF /* organize.sh in Resources */,
+				A808120F2044873900F72DCF /* move.sh in Resources */,
 				A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */,
+				A808120E2044873900F72DCF /* line_number.sh in Resources */,
+				A80812102044873900F72DCF /* open.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +230,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A80811F32044840300F72DCF /* UnixLayer.swift in Sources */,
 				A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */,
+				A80811F5204485C700F72DCF /* main.swift in Sources */,
+				A808121620448BA900F72DCF /* UnixLayerManager.swift in Sources */,
+				A80811F12044817700F72DCF /* UnixLayerInterface.swift in Sources */,
 				A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */,
+				A80812132044877700F72DCF /* ScriptResourceManager.swift in Sources */,
 				A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */,
 				A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */,
 				A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */,
