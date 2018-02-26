@@ -5,7 +5,11 @@
 from pprint import pprint
 # The rules defining the break down of a command and all of its constituents
 command_text = """
-C -> Find_lex file_folder_lex
+
+C -> Find_lex file_folder_lex?misc
+file_folder_lex?misc -> file_folder_lex misc
+misc -> misc misc
+misc -> preposition misc
 C -> Move_lex file_folder_lex?preposition?file_folder_lex
 C -> Move_lex file_folder_lex?preposition?file_folder_lex?preposition?file_folder_lex
 C -> Rename file_folder_lex?preposition?file_folder_lex
@@ -63,11 +67,13 @@ def cky_acceptance(command):
     # Fill in the bottom most row of the table
     for i in range(N):
         entry = []
+        if '.' in command[i]:
+            entry.append('file_folder_lex')
         for key in command_lexicon:
             if command[i] in command_lexicon[key]:
                 entry.append(key)
-            else:
-                entry.append('file_folder_lex')
+        if not entry:
+            entry.append('misc')
         cells[(i, i + 1)] += entry
 
     for diff in range(2, N + 1):
@@ -79,28 +85,36 @@ def cky_acceptance(command):
                             if rule[1] == (A, B):
                                 cells[(i, i + diff)] += [rule[0]]
 
-    # pprint(cells)
+    pprint(cells)
     if "C" in cells[(0, N)]:
         return True
     return False
 
 # Working and should be working
-print(cky_acceptance(["open", "mydog.txt"]))
-print(cky_acceptance(["launch", "mydog.txt"]))
-print(cky_acceptance(["locate", "mydog.txt"]))
-print(cky_acceptance(["find", "mydog.txt"]))
-print(cky_acceptance(["move", "mydog.txt", "to", "Trash"]))
-print(cky_acceptance(["move", "mydog.txt", "from", "Downloads","to", "Trash"]))
-print(cky_acceptance(["organize", "everything","in", "Downloads"]))
-print(cky_acceptance(["copy", "mydog.txt", "to", "Trash"]))
-print(cky_acceptance(["copy", "mydog.txt", "from", "Downloads","to", "Trash"]))
-print(cky_acceptance(["copy", "mydog.txt", "to", "mycat.txt"]))
-print(cky_acceptance(["copy", "mydog.txt", "in", "Downloads","to", "cat.txt"]))
-print("##########################################################################")
-# Not working and shouldn't be working
-print(cky_acceptance(["boot", "mydog.txt"]))
-print(cky_acceptance(["organize", "Downloads"]))
-print("##########################################################################")
-# Working but should not be working
-print(cky_acceptance(["organize", "everything","to", "Downloads"]))
-print(cky_acceptance(["organize", "everything","from", "Downloads"]))
+# print(cky_acceptance(["open", "mydog.txt"]))
+# print(cky_acceptance(["launch", "mydog.txt"]))
+# print(cky_acceptance(["locate", "mydog.txt"]))
+# print(cky_acceptance(["find", "mydog.txt"]))
+# print(cky_acceptance(["move", "mydog.txt", "to", "Trash"]))
+# print(cky_acceptance(["move", "mydog.txt", "from", "Downloads","to", "Trash"]))
+# print(cky_acceptance(["organize", "everything","in", "Downloads"]))
+# print(cky_acceptance(["copy", "mydog.txt", "to", "Trash"]))
+# print(cky_acceptance(["copy", "mydog.txt", "from", "Downloads","to", "Trash"]))
+# print(cky_acceptance(["copy", "mydog.txt", "to", "mycat.txt"]))
+# print(cky_acceptance(["copy", "mydog.txt", "in", "Downloads","to", "cat.txt"]))
+# print("##########################################################################")
+# # Not working and shouldn't be working
+# print(cky_acceptance(["boot", "mydog.txt"]))
+# print(cky_acceptance(["organize", "Downloads"]))
+# print("##########################################################################")
+# # Working but should not be working
+# print(cky_acceptance(["organize", "everything","to", "Downloads"]))
+# print(cky_acceptance(["organize", "everything","from", "Downloads"]))
+
+
+
+
+print(cky_acceptance(["find", "mydog.txt", "from", "my", "computer"]))
+
+if '.' in  'myfiletxt':
+    print("works")
