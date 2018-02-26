@@ -13,7 +13,12 @@ Format:
     file_folder_lex: {}                   // supposed to be for files or folders
     extension_lex: {'everything'}       // could contain other extensions as well
 
-3. Example :
+3. Test if the command works using nlu_playground.py
+  (i) Make a list of tokens of the command
+  (ii) Pass the list to cky_acceptance
+  (iii) Boolean value is returned which signifies whether the command is accepted or not.
+  
+Example :
     find-mydog.txt-from-my-computer = Find_lex-file_folder_lex-preposition-misc-misc
 
 **********              Begin  Edge cases                 **********
@@ -24,4 +29,3 @@ Find_lex-file_folder_lex-preposition-misc-misc
 
 
 **********              End  Edge cases                 **********
-
