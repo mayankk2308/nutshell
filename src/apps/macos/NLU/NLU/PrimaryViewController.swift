@@ -12,9 +12,15 @@ class PrimaryViewController: NSViewController {
 
     @IBOutlet weak var commandTextField: NSTextField!
     
+//    let ULM = UnixLayerManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         commandTextField.focusRingType = .none
+//        ULM.request(withCommand: "open /Applications", onCompletion: {error, message in
+//            print(error)
+//            print(message)
+//        })
     }
 
 }
