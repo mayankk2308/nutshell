@@ -142,25 +142,7 @@ def rec_backtrack(curr_tuple, cells, i, j):
             right_tup = tups
     return [curr_tuple[0]] + [[rec_backtrack(left_tup, cells, i, splitpoint)] + [rec_backtrack(right_tup, cells, splitpoint, j)]]
 
+
 populate_rules('command_grammar.txt')
 
-
-print(cky_parse("open mydog.txt"))
-print(cky_parse("launch mydog.txt"))
-print(cky_parse("locate mydog.txt"))
-print(cky_parse("find mydog.txt"))
-print(cky_parse("move mydog.txt to Trash"))
-print(cky_parse("move mydog.txt from Downloads to Trash"))
-print(cky_parse("organize everything in Downloads"))
-print(cky_parse("copy mydog.txt to Trash"))
-print(cky_parse("copy mydog.txt from Downloads to Trash"))
-print(cky_parse("copy mydog.txt to my cat"))
-print(cky_parse("copy mydog.txt in Downloads to cat.txt"))
-print(cky_parse("find my.dog from my computer"))
-
-# Not working and shouldn't be working
-print(cky_parse("boot mydog.txt"))
-print(cky_parse("organize Downloads"))
-print(cky_parse("organize everything to Downloads"))
-print(cky_parse("organize everything from Downloads"))
 
