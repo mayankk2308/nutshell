@@ -17,6 +17,7 @@ class PrimaryViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commandTextField.focusRingType = .none
+        commandTextField.textColor = color
 //        ULM.request(withCommand: "open /Applications", onCompletion: {error, message in
 //            print(error)
 //            print(message)

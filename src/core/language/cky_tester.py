@@ -1,5 +1,5 @@
-from language import nlp_playground as nlp
-from language import CkyParser as OOP
+import nlp_playground as nlp
+import CkyParser as OOP
 
 # # Working and should be working
 assert nlp.cky_acceptance("open mydog.txt")
