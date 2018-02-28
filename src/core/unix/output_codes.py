@@ -5,5 +5,4 @@ OCODE = {
 253: "File or directory already exists and cannot be overwritten",
 252: "File or directory does not exist",
 251: "Path is a directory, must be a file",
-250: "Command not recognized/supported"
 }

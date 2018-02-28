@@ -73,7 +73,7 @@ class CkyParser:
         for tups in cells[(0, N)]:
             if tups[0] == "C":
                 return self.rec_backtrack(tups, cells, 0, N)
-        return 250, original_command
+        return 255, original_command
 
     def rec_backtrack(self, curr_tuple, cells, i, j):
         if curr_tuple[3] == -1:
