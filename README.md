@@ -1,6 +1,6 @@
 # Natural Language Unix
 
-Written in **Python 3**, this program allows users to automate seemingly tedious and multi-step process through the application of **Unix** commands using natural language. In the future, we may also incorporate speech recognition, blurring the limitations of precise syntax programming.
+Written in **Python 3**, this program allows users to automate seemingly tedious and multi-step processes through the application of **Unix** commands using natural language. In the future, we may also incorporate speech recognition, blurring the limitations of precise syntax programming.
 
 ## Supported Commands
 
