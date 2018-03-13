@@ -31,21 +31,21 @@ def pre_process(command):
     return tokens
 
 # Lexicon containing synonyms of command constituents
-command_lexicon = {
-    'Find_lex': {'find', 'locate'},          # synonyms of find
-    'Move_lex': {'move', 'shift'},           # synonyms of move
-    'Rename_lex': {'rename'},                # synonyms of rename
-    'Copy_lex': {'copy'},                    # synonyms of copy
-    'Open_lex': {'open', 'launch'},          # synonyms of open
-    'Organize_lex': {'organize'},            # synonyms of organize
-    'file_folder_lex': {},                   # regex to match a string(file or folder name)
-    'extension_lex': {'everything'},         # set of extensions supported in organize
-    'from': {'from'},
-    'to': {'to'},
-    'in': {'in'},
-    'with': {'with'},
-}
-
+# command_lexicon = {
+#     'Find_lex': {'find', 'locate'},          # synonyms of find
+#     'Move_lex': {'move', 'shift'},           # synonyms of move
+#     'Rename_lex': {'rename'},                # synonyms of rename
+#     'Copy_lex': {'copy'},                    # synonyms of copy
+#     'Open_lex': {'open', 'launch'},          # synonyms of open
+#     'Organize_lex': {'organize'},            # synonyms of organize
+#     'file_folder_lex': {},                   # regex to match a string(file or folder name)
+#     'extension_lex': {'everything'},         # set of extensions supported in organize
+#     'from': {'from'},
+#     'to': {'to'},
+#     'in': {'in'},
+#     'with': {'with'},
+# }
+command_lexicon = {}
 
 # return True or False depending whether the command is parseable by the grammar.
 def cky_acceptance(command):
@@ -143,6 +143,32 @@ def rec_backtrack(curr_tuple, cells, i, j):
     return [curr_tuple[0]] + [[rec_backtrack(left_tup, cells, i, splitpoint)] + [rec_backtrack(right_tup, cells, splitpoint, j)]]
 
 
+def populate_lexicon(lexicon_file):
+    global command_lexicon
+    with open(lexicon_file) as f:
+        content = f.readlines()
+    lexicon_text = [x.strip() for x in content]
+    # print(lexicon_text)
+    for line in lexicon_text:
+        if line and line[0] != '#':
+            if not line.strip():
+                continue
+            # print(line)
+            left, right = line.split(":")
+            left = left.strip()
+            # print(left)
+            children = right.split(",")
+            command_lexicon[left] = []
+            for child in children:
+                if len(child) > 0:
+                    command_lexicon[left].append(child.strip());
+            # rule = (left, tuple(children))
+            # command_rules.append(rule)
+    # command_lexicon
+
+
 populate_rules('command_grammar.txt')
 
+# print("".split(","))
+populate_lexicon('command_lexicon.txt')
 

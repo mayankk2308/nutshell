@@ -1,22 +1,27 @@
 class CkyParser:
-    def __init__(self, grammar_rules_file):
+    def __init__(self, grammar_rules_file, lexicon_file):
         self.rule_file = grammar_rules_file
+        self.lexicon_file = lexicon_file
         self.command_rules = list()
-        self.command_lexicon = {
-            'Find_lex': {'find', 'locate'},     # synonyms of find
-            'Move_lex': {'move', 'shift'},      # synonyms of move
-            'Rename_lex': {'rename'},           # synonyms of rename
-            'Copy_lex': {'copy'},               # synonyms of copy
-            'Open_lex': {'open', 'launch'},     # synonyms of open
-            'Organize_lex': {'organize'},       # synonyms of organize
-            'file_folder_lex': {},              # regex to match a string(file or folder name)
-            'extension_lex': {'everything'},    # set of extensions supported in organize
-            'from': {'from'},
-            'to': {'to'},
-            'in': {'in'},
-            'with': {'with'},
-        }
+        self.command_lexicon = {}
         self.populate_rules()
+        self.populate_lexicon()
+
+    def populate_lexicon(self):
+        with open(self.lexicon_file) as f:
+            content = f.readlines()
+        lexicon_text = [x.strip() for x in content]
+        for line in lexicon_text:
+            if line and line[0] != '#':
+                if not line.strip():
+                    continue
+                left, right = line.split(":")
+                left = left.strip()
+                children = right.split(",")
+                self.command_lexicon[left] = []
+                for child in children:
+                    if len(child) > 0:
+                        self.command_lexicon[left].append(child.strip());
 
     def populate_rules(self):
         with open(self.rule_file) as f:

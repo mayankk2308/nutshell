@@ -1,0 +1,38 @@
+# Lexicon for 'find' command
+Find_lex: find, locate
+
+# Lexicon for 'move' command
+Move_lex: move, shift
+
+# Lexicon for 'rename' command
+Rename_lex: rename
+
+# Lexicon for 'copy' command
+Copy_lex: copy
+
+# Lexicon for 'open' command
+Open_lex: open, launch
+
+# Lexicon for 'organize' command
+Organize_lex: organize
+
+# Lexicon for file/folder names
+file_folder_lex:
+
+# Lexicon for extensions used in organize
+extension_lex: everything
+
+# Lexicon for application names used alongside 'with'
+application:
+
+# Lexicon for from clause
+from: from
+
+# Lexicon for to clause
+to: to
+
+# Lexicon for in clause
+in: in
+
+# Lexicon for with clause
+with: with

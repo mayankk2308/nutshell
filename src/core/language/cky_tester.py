@@ -1,4 +1,3 @@
-print("hello")
 import nlp_playground as nlp
 import CkyParser as OOP
 
@@ -29,7 +28,7 @@ assert not nlp.cky_acceptance("organize everything from Downloads")
 # Testing
 
 
-ckyObj = OOP.CkyParser('command_grammar.txt')
+ckyObj = OOP.CkyParser('command_grammar.txt', 'command_lexicon.txt')
 
 
 print(ckyObj.cky_parse("open mydog.txt"))
