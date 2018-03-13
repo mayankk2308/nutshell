@@ -25,7 +25,10 @@
 		A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87F55CD2043D85800ECA9EA /* Main.storyboard */; };
 		A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */; };
 		A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */; };
+		A8C6B0042047671C0066261C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6B0032047671C0066261C /* Theme.swift */; };
 		A8E27A8C20449B31000598D7 /* UnixLayer.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A8E27A8B20449B31000598D7 /* UnixLayer.plugin */; };
+		A8F95A5920475B2B0026354E /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5820475B2B0026354E /* LineView.swift */; };
+		A8F95A5C204760530026354E /* CButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5B204760530026354E /* CButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,10 @@
 		A87F55D12043D85800ECA9EA /* NLU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLU.entitlements; sourceTree = "<group>"; };
 		A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWindowController.swift; sourceTree = "<group>"; };
+		A8C6B0032047671C0066261C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A8E27A8B20449B31000598D7 /* UnixLayer.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UnixLayer.plugin; path = "../../Plugins/Unix Layer/dist/UnixLayer.plugin"; sourceTree = "<group>"; };
+		A8F95A5820475B2B0026354E /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		A8F95A5B204760530026354E /* CButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +147,9 @@
 		A87F55D82043D96C00ECA9EA /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */,
-				A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */,
+				A8F95A54204758390026354E /* View Controllers */,
+				A8F95A5A20475B370026354E /* Views */,
+				A8C6B001204766EF0066261C /* Support */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -154,6 +161,32 @@
 				A87F55C82043D85800ECA9EA /* NLU.xcdatamodeld */,
 			);
 			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		A8C6B001204766EF0066261C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A8C6B0032047671C0066261C /* Theme.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		A8F95A54204758390026354E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */,
+				A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A8F95A5A20475B370026354E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A8F95A5820475B2B0026354E /* LineView.swift */,
+				A8F95A5B204760530026354E /* CButton.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +271,15 @@
 				A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */,
 				A80811F5204485C700F72DCF /* main.swift in Sources */,
 				A808121620448BA900F72DCF /* UnixLayerManager.swift in Sources */,
+				A8C6B0042047671C0066261C /* Theme.swift in Sources */,
 				A80811F12044817700F72DCF /* UnixLayerInterface.swift in Sources */,
 				A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */,
 				A80812132044877700F72DCF /* ScriptResourceManager.swift in Sources */,
+				A8F95A5920475B2B0026354E /* LineView.swift in Sources */,
 				A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */,
 				A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */,
 				A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */,
+				A8F95A5C204760530026354E /* CButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
