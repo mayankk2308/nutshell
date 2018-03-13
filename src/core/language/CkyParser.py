@@ -37,6 +37,10 @@ class CkyParser:
                 rule = (left, tuple(children))
                 self.command_rules.append(rule)
 
+    def expand_lexicon(self, key, value):
+        self.command_lexicon[key].append(value)
+
+
     @staticmethod
     def pre_process(command):
         command = command.lower()
