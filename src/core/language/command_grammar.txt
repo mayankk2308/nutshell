@@ -32,7 +32,7 @@ file_folder_lex?misc -> file_folder_lex misc
 misc -> misc misc
 misc -> preposition misc
 
-# for folders/ files with spaces
+# for folders/files with spaces
 file_folder_lex -> file_folder_lex file_folder_lex
        
 file_folder_lex?src -> file_folder_lex src
