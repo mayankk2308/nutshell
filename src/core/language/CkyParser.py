@@ -81,21 +81,38 @@ class CkyParser:
         # pprint(cells)
         for tups in cells[(0, N)]:
             if tups[0] == "C":
-                return self.rec_backtrack(tups, cells, 0, N)
+                return self.resolve_args(tups, cells, N)
         return 255, original_command
 
-    def rec_backtrack(self, curr_tuple, cells, i, j):
-        if curr_tuple[3] == -1:
-            return [curr_tuple[0]] + [curr_tuple[2]]
-        splitpoint = curr_tuple[1]
+
+    def extract_args(self, current_cell, cells, i, j):
+        if current_cell[0] == "file_folder_lex" and current_cell[3] == -1:
+            return [current_cell[2]]
+        if current_cell[0] == "extension_lex" and current_cell[3] == -1:
+            return [current_cell[2]]
+        if current_cell[0] == "to" or current_cell[0] == "from" or current_cell[0] == "with" or current_cell[0] == "in" and current_cell[3] == -1:
+            return []
+        splitpoint = current_cell[1]
         leftchild = cells[(i, splitpoint)]
         rightchild = cells[(splitpoint, j)]
         for tups in leftchild:
-            if tups[0] == curr_tuple[2]:
+            if tups[0] == current_cell[2]:
                 left_tup = tups
         for tups in rightchild:
-            if tups[0] == curr_tuple[3]:
+            if tups[0] == current_cell[3]:
                 right_tup = tups
-        return [curr_tuple[0]] + [
-            [self.rec_backtrack(left_tup, cells, i, splitpoint)] + [self.rec_backtrack(right_tup, cells, splitpoint, j)]]
+        return self.extract_args(left_tup, cells, i, splitpoint) + self.extract_args(right_tup, cells, splitpoint, j)
 
+
+    def resolve_args(self, cell, cells, N):
+        first_split = cell[1]
+        command_type = cells[(0, first_split)][0][0]
+        right_subtree = cells[(first_split, N)]
+        for tups in right_subtree:
+            if tups[0] == cell[3]:
+                right = tups
+        arg_array = list()
+        arg_array.append(command_type)
+        arguments = self.extract_args(right, cells, first_split, N)
+        arg_array = arg_array + arguments
+        return arg_array
