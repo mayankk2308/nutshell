@@ -1,0 +1,55 @@
+# Find Command
+C -> Find_lex file_folder_lex
+C -> Find_lex file_folder_lex?misc
+C -> Find_lex file_folder_lex?src
+C -> Find_lex file_folder_lex?loc
+
+# Open Command
+C -> Open_lex file_folder_lex
+C -> Open_lex file_folder_lex?src
+C -> Open_lex file_folder_lex?loc
+C -> Open_lex file_folder_lex?spec
+
+# Move Command
+C -> Move_lex file_folder_lex?dest
+C -> Move_lex file_folder_lex?src?dest
+
+# Rename Command
+C -> Rename file_folder_lex?dest
+C -> Rename file_folder_lex?loc?dest
+
+# Copy Command
+C -> Copy_lex file_folder_lex?dest
+C -> Copy_lex file_folder_lex?src?dest
+C -> Copy_lex file_folder_lex?loc?dest
+
+# Organize Command
+C -> Organize_lex type?loc
+
+# Subsidiaries
+
+file_folder_lex?misc -> file_folder_lex misc
+misc -> misc misc
+misc -> preposition misc
+
+# for folders/files with spaces
+file_folder_lex -> file_folder_lex file_folder_lex
+       
+file_folder_lex?src -> file_folder_lex src
+file_folder_lex?dest -> file_folder_lex dest
+file_folder_lex?loc -> file_folder_lex loc
+file_folder_lex?src?dest -> file_folder_lex src?dest
+src?dest -> src dest
+file_folder_lex?loc?dest -> file_folder_lex loc?dest
+loc?dest -> loc dest
+type?loc -> extension_lex loc
+file_folder_lex?spec -> file_folder_lex spec
+src -> from file_folder_lex
+src -> src file_folder_lex
+loc -> in file_folder_lex
+loc -> loc file_folder_lex
+dest -> to file_folder_lex
+dest -> dest file_folder_lex
+spec -> with application
+
+# ambiguity -> file_folder_lex, application, misc
