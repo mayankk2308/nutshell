@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FEE565D2079742B00EC082D /* CkyParser.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 6FEE565C2079742B00EC082D /* CkyParser.plugin */; };
+		6FEE565F2079750900EC082D /* UnixLayer.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 6FEE565E2079750900EC082D /* UnixLayer.plugin */; };
 		A80811F12044817700F72DCF /* UnixLayerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F02044817700F72DCF /* UnixLayerInterface.swift */; };
 		A80811F32044840300F72DCF /* UnixLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F22044840300F72DCF /* UnixLayer.swift */; };
 		A80811F5204485C700F72DCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80811F4204485C700F72DCF /* main.swift */; };
@@ -26,12 +28,13 @@
 		A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */; };
 		A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */; };
 		A8C6B0042047671C0066261C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6B0032047671C0066261C /* Theme.swift */; };
-		A8E27A8C20449B31000598D7 /* UnixLayer.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A8E27A8B20449B31000598D7 /* UnixLayer.plugin */; };
 		A8F95A5920475B2B0026354E /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5820475B2B0026354E /* LineView.swift */; };
 		A8F95A5C204760530026354E /* CButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5B204760530026354E /* CButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6FEE565C2079742B00EC082D /* CkyParser.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CkyParser.plugin; sourceTree = "<group>"; };
+		6FEE565E2079750900EC082D /* UnixLayer.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UnixLayer.plugin; path = "../../Plugins/Unix Layer/dist/UnixLayer.plugin"; sourceTree = "<group>"; };
 		A80811F02044817700F72DCF /* UnixLayerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayerInterface.swift; sourceTree = "<group>"; };
 		A80811F22044840300F72DCF /* UnixLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayer.swift; sourceTree = "<group>"; };
 		A80811F4204485C700F72DCF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -54,7 +57,6 @@
 		A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWindowController.swift; sourceTree = "<group>"; };
 		A8C6B0032047671C0066261C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		A8E27A8B20449B31000598D7 /* UnixLayer.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UnixLayer.plugin; path = "../../Plugins/Unix Layer/dist/UnixLayer.plugin"; sourceTree = "<group>"; };
 		A8F95A5820475B2B0026354E /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		A8F95A5B204760530026354E /* CButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +75,7 @@
 		A80811EF2044816300F72DCF /* Unix Layer */ = {
 			isa = PBXGroup;
 			children = (
-				A8E27A8B20449B31000598D7 /* UnixLayer.plugin */,
+				6FEE565E2079750900EC082D /* UnixLayer.plugin */,
 				A80812052044873900F72DCF /* Scripts */,
 				A808121420448A3D00F72DCF /* Management */,
 			);
@@ -123,6 +125,7 @@
 		A87F55C32043D85800ECA9EA /* NLU */ = {
 			isa = PBXGroup;
 			children = (
+				6FEE565C2079742B00EC082D /* CkyParser.plugin */,
 				A80811EF2044816300F72DCF /* Unix Layer */,
 				A87F55D82043D96C00ECA9EA /* User Interface */,
 				A87F55D72043D88600ECA9EA /* Storyboard & Config */,
@@ -249,14 +252,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A808120C2044873900F72DCF /* copy.sh in Resources */,
-				A8E27A8C20449B31000598D7 /* UnixLayer.plugin in Resources */,
 				A808120D2044873900F72DCF /* find.sh in Resources */,
 				A87F55CC2043D85800ECA9EA /* Assets.xcassets in Resources */,
 				A80812112044873900F72DCF /* organize.sh in Resources */,
+				6FEE565F2079750900EC082D /* UnixLayer.plugin in Resources */,
 				A808120F2044873900F72DCF /* move.sh in Resources */,
 				A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */,
 				A808120E2044873900F72DCF /* line_number.sh in Resources */,
 				A80812102044873900F72DCF /* open.sh in Resources */,
+				6FEE565D2079742B00EC082D /* CkyParser.plugin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +418,7 @@
 				CODE_SIGN_ENTITLEMENTS = NLU/NLU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YF7XP6ZYSQ;
+				DEVELOPMENT_TEAM = HHBWFCLNBF;
 				INFOPLIST_FILE = NLU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mayank.NLU;
@@ -430,7 +434,7 @@
 				CODE_SIGN_ENTITLEMENTS = NLU/NLU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YF7XP6ZYSQ;
+				DEVELOPMENT_TEAM = HHBWFCLNBF;
 				INFOPLIST_FILE = NLU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mayank.NLU;
