@@ -1,7 +1,10 @@
+import objc
+from Foundation import NSObject
+
 class CkyParser:
-    def __init__(self, grammar_rules_file, lexicon_file):
-        self.rule_file = grammar_rules_file
-        self.lexicon_file = lexicon_file
+    def __init__(self):
+        self.rule_file = 'parsing_assets/command_grammar.txt'
+        self.lexicon_file = 'parsing_assets/command_lexicon.txt'
         self.command_rules = list()
         self.command_lexicon = {}
         self.populate_rules()
@@ -37,6 +40,7 @@ class CkyParser:
                 rule = (left, tuple(children))
                 self.command_rules.append(rule)
 
+    # Callback function after did-you-mean to resolve ambiguity for later
     def expand_lexicon(self, key, value):
         self.command_lexicon[key].append(value)
 
@@ -121,7 +125,7 @@ class CkyParser:
 
 # Testing
 
-ckyObj = CkyParser('command_grammar.txt', 'command_lexicon.txt')
+ckyObj = CkyParser()
 
 print(ckyObj.cky_parse("open mydog.txt"))
 print(ckyObj.cky_parse("launch mydog.txt"))
