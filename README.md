@@ -46,15 +46,13 @@ This will open the the file with the OS-default application for that type.
 
 The application also includes a convenient logging system that maintains a systematic list of commands and results in a subdirectory called `logs`. Logs are ordered by date and captured per session.
 
-## Testing
+## Ground Rules
 
-To test the working of the project, first run `testing.sh`, and then attempt to run the following commands:
+Due to certain limitations we have laid out some ground rules for the usage of this application as mentioned below:
 
-* **Organize** - `organize everything in TestOrganize`  ***or*** `organize pdf in TestOrganize` ***or*** `organize txt in TestOrganize` ***or*** `organize dmg in TestOrganize` ***or*** `organize png in TestOrganize`
-* **Rename** - `rename hack.txt to umass.txt`
-* **Move** - `move drag.txt to TestMove`
-* **Copy** - `copy back.txt to TestCopy`
-* **Open** - `open openthis.txt` ***or*** `open openthat.txt`
+* File/Folder names must not contain spaces within them.
+* File/Folder names must not contain keywords used in the application (command names such as open, find etc.)
+
 
 ## License
 
