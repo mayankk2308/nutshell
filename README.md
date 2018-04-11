@@ -48,10 +48,7 @@ The application also includes a convenient logging system that maintains a syste
 
 ## Ground Rules
 
-Due to certain limitations we have laid out some ground rules for the usage of this application as mentioned below:
-
-* File/Folder names must not contain spaces within them.
-* File/Folder names must not contain keywords used in the application (command names such as open, find etc.)
+Due to certain limitations, File/Folder names must not contain spaces within them.
 
 
 ## License
