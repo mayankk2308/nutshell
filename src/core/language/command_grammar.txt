@@ -1,30 +1,30 @@
 # Find Command
-C -> Find_lex file_folder_lex
-C -> Find_lex file_folder_lex?misc
-C -> Find_lex file_folder_lex?src
-C -> Find_lex file_folder_lex?loc
+C -> find_command file_folder_lex
+C -> find_command file_folder_lex?misc
+C -> find_command file_folder_lex?src
+C -> find_command file_folder_lex?loc
 
 # Open Command
-C -> Open_lex file_folder_lex
-C -> Open_lex file_folder_lex?src
-C -> Open_lex file_folder_lex?loc
-C -> Open_lex file_folder_lex?spec
+C -> open_command file_folder_lex
+C -> open_command file_folder_lex?src
+C -> open_command file_folder_lex?loc
+C -> open_command file_folder_lex?spec
 
 # Move Command
-C -> Move_lex file_folder_lex?dest
-C -> Move_lex file_folder_lex?src?dest
+C -> move_command file_folder_lex?dest
+C -> move_command file_folder_lex?src?dest
 
 # Rename Command
-C -> Rename file_folder_lex?dest
-C -> Rename file_folder_lex?loc?dest
+C -> rename_command file_folder_lex?dest
+C -> rename_command file_folder_lex?loc?dest
 
 # Copy Command
-C -> Copy_lex file_folder_lex?dest
-C -> Copy_lex file_folder_lex?src?dest
-C -> Copy_lex file_folder_lex?loc?dest
+C -> copy_command file_folder_lex?dest
+C -> copy_command file_folder_lex?src?dest
+C -> copy_command file_folder_lex?loc?dest
 
 # Organize Command
-C -> Organize_lex type?loc
+C -> organize_command type?loc
 
 # Subsidiaries
 
@@ -34,7 +34,7 @@ misc -> preposition misc
 
 # for folders/files with spaces
 file_folder_lex -> file_folder_lex file_folder_lex
-       
+
 file_folder_lex?src -> file_folder_lex src
 file_folder_lex?dest -> file_folder_lex dest
 file_folder_lex?loc -> file_folder_lex loc

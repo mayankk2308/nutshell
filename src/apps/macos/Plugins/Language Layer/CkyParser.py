@@ -1,5 +1,5 @@
-import objc
-from Foundation import NSObject
+# import objc
+# from Foundation import NSObject
 
 class CkyParser:
     def __init__(self):
@@ -43,6 +43,7 @@ class CkyParser:
     # Callback function after did-you-mean to resolve ambiguity for later
     def expand_lexicon(self, key, value):
         self.command_lexicon[key].append(value)
+        # Append to lexicon file to save it persistently
 
 
     @staticmethod
@@ -60,13 +61,21 @@ class CkyParser:
                 cells[(i, j)] = []
 
         # Fill in the bottom most row of the table
+        command_included = False
         for i in range(N):
             entry = []
             if '.' in command[i]:
                 entry.append(('file_folder_lex', 0, command[i], -1))
             for key in self.command_lexicon:
                 if command[i] in self.command_lexicon[key]:
-                    entry.append((key, 0, command[i], -1))
+                    if "command" in key:
+                        if not command_included:
+                            entry.append((key, 0, command[i], -1))
+                            command_included = True
+                        else:
+                            entry.append(('file_folder_lex', 0, command[i], -1))
+                    else:
+                        entry.append((key, 0, command[i], -1))
             if not entry:
                 entry.append(('misc', 0, command[i], -1))
                 entry.append(('file_folder_lex', 0, command[i], -1))
@@ -82,7 +91,7 @@ class CkyParser:
                                 if rule[1] == (A[0], B[0]):
                                     cells[(i, i + diff)] += [(rule[0], k, A[0], B[0])]
 
-        # pprint(cells)
+        # pprint.pprint(cells)
         for tups in cells[(0, N)]:
             if tups[0] == "C":
                 return self.resolve_args(tups, cells, N)
@@ -124,7 +133,7 @@ class CkyParser:
 
 
 # Testing
-
+#
 # ckyObj = CkyParser()
 #
 # print(ckyObj.cky_parse("open mydog.txt"))
@@ -139,3 +148,10 @@ class CkyParser:
 # print(ckyObj.cky_parse("copy mydog.txt to my cat"))
 # print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
 # print(ckyObj.cky_parse("find my.dog from my computer"))
+#
+# print(ckyObj.cky_parse("open Open Source Projects"))
+# print(ckyObj.cky_parse("open Find Source Projects"))
+# print(ckyObj.cky_parse("open Copy Source Projects"))
+# print(ckyObj.cky_parse("open organize Source Projects"))
+# print(ckyObj.cky_parse("open move Source Projects"))
+# print(ckyObj.cky_parse("open rename Source Projects"))

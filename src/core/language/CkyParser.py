@@ -56,13 +56,21 @@ class CkyParser:
                 cells[(i, j)] = []
 
         # Fill in the bottom most row of the table
+        command_included = False
         for i in range(N):
             entry = []
             if '.' in command[i]:
                 entry.append(('file_folder_lex', 0, command[i], -1))
             for key in self.command_lexicon:
                 if command[i] in self.command_lexicon[key]:
-                    entry.append((key, 0, command[i], -1))
+                    if "command" in key:
+                        if not command_included:
+                            entry.append((key, 0, command[i], -1))
+                            command_included = True
+                        else:
+                            entry.append(('file_folder_lex', 0, command[i], -1))
+                    else:
+                        entry.append((key, 0, command[i], -1))
             if not entry:
                 entry.append(('misc', 0, command[i], -1))
                 entry.append(('file_folder_lex', 0, command[i], -1))
@@ -78,12 +86,11 @@ class CkyParser:
                                 if rule[1] == (A[0], B[0]):
                                     cells[(i, i + diff)] += [(rule[0], k, A[0], B[0])]
 
-        # pprint(cells)
+        # pprint.pprint(cells)
         for tups in cells[(0, N)]:
             if tups[0] == "C":
                 return self.resolve_args(tups, cells, N)
         return 255, original_command
-
 
     def extract_args(self, current_cell, cells, i, j):
         if current_cell[0] == "file_folder_lex" and current_cell[3] == -1:
@@ -103,7 +110,6 @@ class CkyParser:
                 right_tup = tups
         return self.extract_args(left_tup, cells, i, splitpoint) + self.extract_args(right_tup, cells, splitpoint, j)
 
-
     def resolve_args(self, cell, cells, N):
         first_split = cell[1]
         command_type = cells[(0, first_split)][0][0]
@@ -116,3 +122,23 @@ class CkyParser:
         arguments = self.extract_args(right, cells, first_split, N)
         arg_array = arg_array + arguments
         return arg_array
+
+
+# Testing
+
+ckyObj = CkyParser("command_grammar.txt", "command_lexicon.txt")
+
+print(ckyObj.cky_parse("open mydog.txt"))
+print(ckyObj.cky_parse("launch mydog.txt"))
+print(ckyObj.cky_parse("locate mydog.txt"))
+print(ckyObj.cky_parse("find mydog.txt"))
+print(ckyObj.cky_parse("move mydog.txt to Trash"))
+print(ckyObj.cky_parse("move mydog.txt from Downloads to Trash"))
+print(ckyObj.cky_parse("organize everything in Downloads"))
+print(ckyObj.cky_parse("copy mydog.txt to Trash"))
+print(ckyObj.cky_parse("copy mydog.txt from Downloads to Trash"))
+print(ckyObj.cky_parse("copy mydog.txt to my cat"))
+print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
+print(ckyObj.cky_parse("find my.dog from my computer"))
+
+print(ckyObj.cky_parse("open Open Source Porojects"))

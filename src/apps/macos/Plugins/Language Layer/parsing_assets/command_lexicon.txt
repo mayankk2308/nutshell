@@ -1,20 +1,20 @@
 # Lexicon for 'find' command
-Find_lex: find, locate
+find_command: find, locate
 
 # Lexicon for 'move' command
-Move_lex: move, shift
+move_command: move, shift
 
 # Lexicon for 'rename' command
-Rename_lex: rename
+rename_command: rename
 
 # Lexicon for 'copy' command
-Copy_lex: copy
+copy_command: copy
 
 # Lexicon for 'open' command
-Open_lex: open, launch
+open_command: open, launch
 
 # Lexicon for 'organize' command
-Organize_lex: organize
+organize_command: organize
 
 # Lexicon for file/folder names
 file_folder_lex:
