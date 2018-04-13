@@ -29,10 +29,16 @@ unixLayerPluginBundle.load()
 languageLayerPluginBundle.load()
 
 
-guard let pClass = unixLayerPluginBundle.principalClass as? UnixLayerInterface.Type else {
+guard let pUnixLayerClass = unixLayerPluginBundle.principalClass as? UnixLayerInterface.Type else {
     fatalError("Principal class could not be loaded")
 }
 
-_ = UnixLayer.instance(newInstance: pClass.instance())
+_ = UnixLayer.instance(newInstance: pUnixLayerClass.instance())
+
+guard let pLanguageLayerClass = languageLayerPluginBundle.principalClass as? LanguageLayerInterface.Type else {
+    fatalError("Principal class could not be loaded")
+}
+
+_ = LanguageLayer.instance(newInstance: pLanguageLayerClass.instance())
 
 exit(NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv))

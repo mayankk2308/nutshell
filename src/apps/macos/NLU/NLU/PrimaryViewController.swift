@@ -12,12 +12,17 @@ class PrimaryViewController: NSViewController {
 
     @IBOutlet weak var commandTextField: NSTextField!
     
-//    let ULM = UnixLayerManager()
+    let ULM = UnixLayerManager()
+    let LLM = LanguageLayerManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commandTextField.focusRingType = .none
         commandTextField.textColor = color
+//        LLM.request(withCommand: "move mydog.txt from Downloads to Trash") { error, message in
+//            print(error)
+//            print(message)
+//        }
 //        ULM.request(withCommand: "open /Applications", onCompletion: {error, message in
 //            print(error)
 //            print(message)

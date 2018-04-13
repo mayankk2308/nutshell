@@ -19,7 +19,6 @@
 		A80812112044873900F72DCF /* organize.sh in Resources */ = {isa = PBXBuildFile; fileRef = A808120B2044873900F72DCF /* organize.sh */; };
 		A80812132044877700F72DCF /* ScriptResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80812122044877700F72DCF /* ScriptResourceManager.swift */; };
 		A808121620448BA900F72DCF /* UnixLayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808121520448BA900F72DCF /* UnixLayerManager.swift */; };
-		A86D4858207978F600540834 /* CkyParser.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A86D4857207978F500540834 /* CkyParser.plugin */; };
 		A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C42043D85800ECA9EA /* AppDelegate.swift */; };
 		A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */; };
 		A87F55CA2043D85800ECA9EA /* NLU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A87F55C82043D85800ECA9EA /* NLU.xcdatamodeld */; };
@@ -27,6 +26,10 @@
 		A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87F55CD2043D85800ECA9EA /* Main.storyboard */; };
 		A87F55DB2043D9DD00ECA9EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */; };
 		A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */; };
+		A897149320814CD100D41100 /* LanguageLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897149220814CD100D41100 /* LanguageLayer.swift */; };
+		A897149520814D0300D41100 /* LanguageLayerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897149420814D0300D41100 /* LanguageLayerInterface.swift */; };
+		A897149720815C6700D41100 /* CkyParser.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A897149620815C6700D41100 /* CkyParser.plugin */; };
+		A897149920815D9400D41100 /* LanguageLayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897149820815D9400D41100 /* LanguageLayerManager.swift */; };
 		A8C6B0042047671C0066261C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6B0032047671C0066261C /* Theme.swift */; };
 		A8F95A5920475B2B0026354E /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5820475B2B0026354E /* LineView.swift */; };
 		A8F95A5C204760530026354E /* CButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F95A5B204760530026354E /* CButton.swift */; };
@@ -45,7 +48,6 @@
 		A808120B2044873900F72DCF /* organize.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = organize.sh; sourceTree = "<group>"; };
 		A80812122044877700F72DCF /* ScriptResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptResourceManager.swift; sourceTree = "<group>"; };
 		A808121520448BA900F72DCF /* UnixLayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixLayerManager.swift; sourceTree = "<group>"; };
-		A86D4857207978F500540834 /* CkyParser.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CkyParser.plugin; path = "../../Plugins/Language Layer/dist/CkyParser.plugin"; sourceTree = "<group>"; };
 		A87F55C12043D85800ECA9EA /* NLU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87F55C42043D85800ECA9EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A87F55C62043D85800ECA9EA /* PrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,10 @@
 		A87F55D12043D85800ECA9EA /* NLU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLU.entitlements; sourceTree = "<group>"; };
 		A87F55DA2043D9DD00ECA9EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A87F55DC2043DC0D00ECA9EA /* PrimaryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWindowController.swift; sourceTree = "<group>"; };
+		A897149220814CD100D41100 /* LanguageLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLayer.swift; sourceTree = "<group>"; };
+		A897149420814D0300D41100 /* LanguageLayerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLayerInterface.swift; sourceTree = "<group>"; };
+		A897149620815C6700D41100 /* CkyParser.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CkyParser.plugin; path = "../../Plugins/Language Layer/dist/CkyParser.plugin"; sourceTree = "<group>"; };
+		A897149820815D9400D41100 /* LanguageLayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLayerManager.swift; sourceTree = "<group>"; };
 		A8C6B0032047671C0066261C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A8F95A5820475B2B0026354E /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		A8F95A5B204760530026354E /* CButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CButton.swift; sourceTree = "<group>"; };
@@ -109,7 +115,8 @@
 		A86D48562079781500540834 /* Language Layer */ = {
 			isa = PBXGroup;
 			children = (
-				A86D4857207978F500540834 /* CkyParser.plugin */,
+				A897149620815C6700D41100 /* CkyParser.plugin */,
+				A897149120814CA300D41100 /* Management */,
 			);
 			name = "Language Layer";
 			sourceTree = "<group>";
@@ -172,6 +179,16 @@
 				A87F55C82043D85800ECA9EA /* NLU.xcdatamodeld */,
 			);
 			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		A897149120814CA300D41100 /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				A897149220814CD100D41100 /* LanguageLayer.swift */,
+				A897149420814D0300D41100 /* LanguageLayerInterface.swift */,
+				A897149820815D9400D41100 /* LanguageLayerManager.swift */,
+			);
+			name = Management;
 			sourceTree = "<group>";
 		};
 		A8C6B001204766EF0066261C /* Support */ = {
@@ -268,7 +285,7 @@
 				A87F55CF2043D85800ECA9EA /* Main.storyboard in Resources */,
 				A808120E2044873900F72DCF /* line_number.sh in Resources */,
 				A80812102044873900F72DCF /* open.sh in Resources */,
-				A86D4858207978F600540834 /* CkyParser.plugin in Resources */,
+				A897149720815C6700D41100 /* CkyParser.plugin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +297,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80811F32044840300F72DCF /* UnixLayer.swift in Sources */,
+				A897149920815D9400D41100 /* LanguageLayerManager.swift in Sources */,
+				A897149320814CD100D41100 /* LanguageLayer.swift in Sources */,
 				A87F55DD2043DC0D00ECA9EA /* PrimaryWindowController.swift in Sources */,
 				A80811F5204485C700F72DCF /* main.swift in Sources */,
 				A808121620448BA900F72DCF /* UnixLayerManager.swift in Sources */,
 				A8C6B0042047671C0066261C /* Theme.swift in Sources */,
 				A80811F12044817700F72DCF /* UnixLayerInterface.swift in Sources */,
 				A87F55C72043D85800ECA9EA /* PrimaryViewController.swift in Sources */,
+				A897149520814D0300D41100 /* LanguageLayerInterface.swift in Sources */,
 				A80812132044877700F72DCF /* ScriptResourceManager.swift in Sources */,
 				A8F95A5920475B2B0026354E /* LineView.swift in Sources */,
 				A87F55C52043D85800ECA9EA /* AppDelegate.swift in Sources */,
