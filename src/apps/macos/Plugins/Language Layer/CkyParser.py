@@ -1,17 +1,16 @@
 import objc
 from Foundation import NSObject
 from OutputCodes import OCODE
-from os import path
+import os
 
 LanguageLayerInterface = objc.protocolNamed("NLU.LanguageLayerInterface")
 
 class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
-    _abs_path = path.dirname(__file__)
     command_lexicon = {}
     command_rules = list()
-    rule_file = _abs_path + "/command_grammar.txt"
-    lexicon_file = _abs_path + "/command_lexicon.txt"
+    rule_file = os.environ['RESOURCEPATH'] + "/command_grammar.txt"
+    lexicon_file = os.environ['RESOURCEPATH'] + "/command_lexicon.txt"
 
     @classmethod
     def instance(self):
