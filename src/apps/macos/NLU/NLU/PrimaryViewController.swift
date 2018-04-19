@@ -19,10 +19,10 @@ class PrimaryViewController: NSViewController {
         super.viewDidLoad()
         commandTextField.focusRingType = .none
         commandTextField.textColor = color
-//        LLM.request(withCommand: "move mydog.txt from Downloads to Trash") { error, message in
-//            print(error)
-//            print(message)
-//        }
+        LLM.request(withCommand: "move mydog.txt from Downloads to Trash") { error, message in
+            print(error)
+            print(message)
+        }
 //        ULM.request(withCommand: "open /Applications", onCompletion: {error, message in
 //            print(error)
 //            print(message)
