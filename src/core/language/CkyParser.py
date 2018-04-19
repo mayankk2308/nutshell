@@ -94,11 +94,11 @@ class CkyParser:
 
     def extract_args(self, current_cell, cells, i, j):
         if current_cell[0] == "file_folder_lex" and current_cell[3] == -1:
-            return [current_cell[2]]
+            return '"' + current_cell[2] + '"' + " "
         if current_cell[0] == "extension_lex" and current_cell[3] == -1:
-            return [current_cell[2]]
+            return current_cell[2] + " "
         if current_cell[0] == "to" or current_cell[0] == "from" or current_cell[0] == "with" or current_cell[0] == "in" and current_cell[3] == -1:
-            return []
+            return ""
         splitpoint = current_cell[1]
         leftchild = cells[(i, splitpoint)]
         rightchild = cells[(splitpoint, j)]
@@ -117,8 +117,8 @@ class CkyParser:
         for tups in right_subtree:
             if tups[0] == cell[3]:
                 right = tups
-        arg_array = list()
-        arg_array.append(command_type)
+        arg_array = ""
+        arg_array += command_type + " "
         arguments = self.extract_args(right, cells, first_split, N)
         arg_array = arg_array + arguments
         return arg_array
