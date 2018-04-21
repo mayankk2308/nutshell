@@ -1,3 +1,4 @@
+import pprint
 class CkyParser:
     def __init__(self, grammar_rules_file, lexicon_file):
         self.rule_file = grammar_rules_file
@@ -43,26 +44,19 @@ class CkyParser:
 
     @staticmethod
     def pre_process(command):
-        command = command.lower()
-        # print(command)
-        start_args = False
-        tokens = command.split()
-        arg = ""
-        new_tok = []
-        for word in command.split():
-            if "'" in word:
-                if not start_args:
-                    start_args = True
-                    arg += word + " "
-                else:
-                    arg += word
-                    start_args = False
-                    new_tok += [arg]
-            elif start_args:
-                arg += word + " "
+        quotes = 0
+        command += " "
+        current_arg = ""
+        tokens = []
+        for character in command:
+            if character is " " and quotes % 2 is 0:
+                tokens.append(current_arg)
+                current_arg = ""
+            elif character is "'":
+                quotes += 1
             else:
-                new_tok += [word]
-        return new_tok
+                current_arg += character
+        return tokens
 
     def cky_parse(self, original_command):
         command = self.pre_process(original_command)
@@ -76,8 +70,6 @@ class CkyParser:
         command_included = False
         for i in range(N):
             entry = []
-            if "''" in command[i]:
-                entry.append(('file_folder_lex', 0, command[i], -1))
             for key in self.command_lexicon:
                 if command[i] in self.command_lexicon[key]:
                     if "command" in key:
@@ -125,7 +117,7 @@ class CkyParser:
         for tups in rightchild:
             if tups[0] == current_cell[3]:
                 right_tup = tups
-        return [self.extract_args(left_tup, cells, i, splitpoint)] + [self.extract_args(right_tup, cells, splitpoint, j)]
+        return self.extract_args(left_tup, cells, i, splitpoint) + self.extract_args(right_tup, cells, splitpoint, j)
 
     def resolve_args(self, cell, cells, N):
         first_split = cell[1]
@@ -145,17 +137,17 @@ class CkyParser:
 
 ckyObj = CkyParser("command_grammar.txt", "command_lexicon.txt")
 
-# ckyObj.cky_parse("open 'mydog.txt'")
-# print(ckyObj.cky_parse("launch mydog.txt"))
-# print(ckyObj.cky_parse("locate mydog.txt"))
-# print(ckyObj.cky_parse("find mydog.txt"))
-# print(ckyObj.cky_parse("move mydog.txt to Trash"))
-# print(ckyObj.cky_parse("move mydog.txt from Downloads to Trash"))
-# print(ckyObj.cky_parse("organize everything in Downloads"))
-# print(ckyObj.cky_parse("copy mydog.txt to Trash"))
-# print(ckyObj.cky_parse("copy mydog.txt from Downloads to Trash"))
-# print(ckyObj.cky_parse("copy mydog.txt to my cat"))
-# print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
-# print(ckyObj.cky_parse("find my.dog from my computer"))
+print(ckyObj.cky_parse("open 'mydog.txt'"))
+print(ckyObj.cky_parse("launch mydog.txt"))
+print(ckyObj.cky_parse("locate mydog.txt"))
+print(ckyObj.cky_parse("find mydog.txt"))
+print(ckyObj.cky_parse("move mydog.txt to Trash"))
+print(ckyObj.cky_parse("move mydog.txt from Downloads to Trash"))
+print(ckyObj.cky_parse("organize everything in Downloads"))
+print(ckyObj.cky_parse("copy mydog.txt to Trash"))
+print(ckyObj.cky_parse("copy mydog.txt from Downloads to Trash"))
+print(ckyObj.cky_parse("copy mydog.txt to 'my cat'"))
+print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
+print(ckyObj.cky_parse("find my.dog from 'my computer'"))
 
-print(ckyObj.cky_parse("open 'Open Source Projects'"))
+print(ckyObj.cky_parse("move 'Open Source Projects' to 'Hello World'"))
