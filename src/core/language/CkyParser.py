@@ -44,8 +44,25 @@ class CkyParser:
     @staticmethod
     def pre_process(command):
         command = command.lower()
+        # print(command)
+        start_args = False
         tokens = command.split()
-        return tokens
+        arg = ""
+        new_tok = []
+        for word in command.split():
+            if "'" in word:
+                if not start_args:
+                    start_args = True
+                    arg += word + " "
+                else:
+                    arg += word
+                    start_args = False
+                    new_tok += [arg]
+            elif start_args:
+                arg += word + " "
+            else:
+                new_tok += [word]
+        return new_tok
 
     def cky_parse(self, original_command):
         command = self.pre_process(original_command)
@@ -59,7 +76,7 @@ class CkyParser:
         command_included = False
         for i in range(N):
             entry = []
-            if '.' in command[i]:
+            if "''" in command[i]:
                 entry.append(('file_folder_lex', 0, command[i], -1))
             for key in self.command_lexicon:
                 if command[i] in self.command_lexicon[key]:
@@ -94,11 +111,11 @@ class CkyParser:
 
     def extract_args(self, current_cell, cells, i, j):
         if current_cell[0] == "file_folder_lex" and current_cell[3] == -1:
-            return '"' + current_cell[2] + '"' + " "
+            return [current_cell[2]]
         if current_cell[0] == "extension_lex" and current_cell[3] == -1:
-            return current_cell[2] + " "
+            return [current_cell[2]]
         if current_cell[0] == "to" or current_cell[0] == "from" or current_cell[0] == "with" or current_cell[0] == "in" and current_cell[3] == -1:
-            return ""
+            return []
         splitpoint = current_cell[1]
         leftchild = cells[(i, splitpoint)]
         rightchild = cells[(splitpoint, j)]
@@ -108,7 +125,7 @@ class CkyParser:
         for tups in rightchild:
             if tups[0] == current_cell[3]:
                 right_tup = tups
-        return self.extract_args(left_tup, cells, i, splitpoint) + self.extract_args(right_tup, cells, splitpoint, j)
+        return [self.extract_args(left_tup, cells, i, splitpoint)] + [self.extract_args(right_tup, cells, splitpoint, j)]
 
     def resolve_args(self, cell, cells, N):
         first_split = cell[1]
@@ -117,8 +134,8 @@ class CkyParser:
         for tups in right_subtree:
             if tups[0] == cell[3]:
                 right = tups
-        arg_array = ""
-        arg_array += command_type + " "
+        arg_array = []
+        arg_array += [command_type]
         arguments = self.extract_args(right, cells, first_split, N)
         arg_array = arg_array + arguments
         return arg_array
@@ -128,17 +145,17 @@ class CkyParser:
 
 ckyObj = CkyParser("command_grammar.txt", "command_lexicon.txt")
 
-print(ckyObj.cky_parse("open mydog.txt"))
-print(ckyObj.cky_parse("launch mydog.txt"))
-print(ckyObj.cky_parse("locate mydog.txt"))
-print(ckyObj.cky_parse("find mydog.txt"))
-print(ckyObj.cky_parse("move mydog.txt to Trash"))
-print(ckyObj.cky_parse("move mydog.txt from Downloads to Trash"))
-print(ckyObj.cky_parse("organize everything in Downloads"))
-print(ckyObj.cky_parse("copy mydog.txt to Trash"))
-print(ckyObj.cky_parse("copy mydog.txt from Downloads to Trash"))
-print(ckyObj.cky_parse("copy mydog.txt to my cat"))
-print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
-print(ckyObj.cky_parse("find my.dog from my computer"))
+# ckyObj.cky_parse("open 'mydog.txt'")
+# print(ckyObj.cky_parse("launch mydog.txt"))
+# print(ckyObj.cky_parse("locate mydog.txt"))
+# print(ckyObj.cky_parse("find mydog.txt"))
+# print(ckyObj.cky_parse("move mydog.txt to Trash"))
+# print(ckyObj.cky_parse("move mydog.txt from Downloads to Trash"))
+# print(ckyObj.cky_parse("organize everything in Downloads"))
+# print(ckyObj.cky_parse("copy mydog.txt to Trash"))
+# print(ckyObj.cky_parse("copy mydog.txt from Downloads to Trash"))
+# print(ckyObj.cky_parse("copy mydog.txt to my cat"))
+# print(ckyObj.cky_parse("copy mydog.txt in Downloads to cat.txt"))
+# print(ckyObj.cky_parse("find my.dog from my computer"))
 
-print(ckyObj.cky_parse("open Open Source Porojects"))
+print(ckyObj.cky_parse("open 'Open Source Projects'"))
