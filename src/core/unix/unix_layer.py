@@ -35,21 +35,21 @@ class unix_manager(object):
 
     # primary command execution handler that calls back provided completion handler
     def execute(self, unix_command, completion_handler):
-        self.logger.write_data("cmd: " + unix_command)
-        args = self.parse_natural_command(unix_command.strip())
-        instruction = args[0]
-        args[0] = self.parse_to_std_command(args[0])
-        if args[0] is None:
-            self.logger.write_data("err: " + str(255) + " " + OCODE[255])
+        # self.logger.write_data("cmd: " + unix_command)
+        # args = self.parse_natural_command(unix_command.strip())
+        instruction = unix_command[0]
+        unix_command[0] = self.parse_to_std_command(unix_command[0])
+        if unix_command[0] is None:
+            # self.logger.write_data("err: " + str(255) + " " + OCODE[255])
             completion_handler(255, OCODE[255])
             return
-        if len(args) - 1 is not EXPECTED_ARGS[instruction]:
-            self.logger.write_data("err: " + str(254) + " " + OCODE[254])
+        if len(unix_command) - 1 is not EXPECTED_ARGS[instruction]:
+            # self.logger.write_data("err: " + str(254) + " " + OCODE[254])
             completion_handler(254, OCODE[254])
             return
-        response = Popen(args, stdout=PIPE, stderr=PIPE)
+        response = Popen(unix_command, stdout=PIPE, stderr=PIPE)
         error_code, response_message = self.process_response(response)
-        self.logger.write_data(str(error_code) + " " + response_message)
+        # self.logger.write_data(str(error_code) + " " + response_message)
         completion_handler(error_code, response_message)
 
     # process standard I/O
@@ -74,5 +74,5 @@ def test_handler(error, message):
     print(message)
 
 thread_manager = thread_manager()
-thread_manager.background_exec(manager.execute, "open '/Applications'", test_handler)
+thread_manager.background_exec(manager.execute, ["open", "/Users/mayank/Documents/open Source Projects"], test_handler)
 # manager.destroy_logs()

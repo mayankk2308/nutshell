@@ -20,12 +20,12 @@ class ScriptResourceManager {
     
     /// Stores expected arguments for commands
     static let expectedArgs = [
-        "open": 1,
-        "find": 1,
-        "copy": 2,
-        "move": 2,
-        "rename": 2,
-        "organize": 2
+        "open_command": 1,
+        "find_command": 1,
+        "copy_command": 2,
+        "move_command": 2,
+        "rename_command": 2,
+        "organize_command": 2
     ]
     
     /// Retrieves the path for requested script from the bundle
@@ -49,12 +49,12 @@ class ScriptResourceManager {
     /// - Returns: a mapping from command to script path
     static func allCommandPaths() -> [String : String] {
         return [
-            "open": retrieveCommandPath(forCommand: "open") ?? "None",
-            "copy": retrieveCommandPath(forCommand: "copy") ?? "None",
-            "find": retrieveCommandPath(forCommand: "find") ?? "None",
-            "move": retrieveCommandPath(forCommand: "move") ?? "None",
-            "rename": retrieveCommandPath(forCommand: "move") ?? "None",
-            "organize": retrieveCommandPath(forCommand: "organize") ?? "None",
+            "open_command": retrieveCommandPath(forCommand: "open") ?? "None",
+            "copy_command": retrieveCommandPath(forCommand: "copy") ?? "None",
+            "find_command": retrieveCommandPath(forCommand: "find") ?? "None",
+            "move_command": retrieveCommandPath(forCommand: "move") ?? "None",
+            "rename_command": retrieveCommandPath(forCommand: "move") ?? "None",
+            "organize_command": retrieveCommandPath(forCommand: "organize") ?? "None",
         ]
     }
     
