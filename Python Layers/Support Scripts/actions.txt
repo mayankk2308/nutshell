@@ -1,0 +1,17 @@
+# Copy.sh
+'#!/bin/sh\n# script copy.sh\n# copy "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$item" && -d "$item" ]]\nthen\n  rsync -r "$item" "$destination"\n  exit 0\nelse\n  exit 252\nfi\n'
+
+# Open.sh
+'#!/bin/sh\n# script open.sh\n# open "item" with default OS application\n\nitem="$1"\nopen "$item"\nexit 0\n'
+
+# Find.sh
+'#!/bin/sh\n# script find.sh\n# finds given "filename" in current user directory (~)\n\nfilename="$1"\nfind ~ -iname "$filename" -print\nexit 0\n'
+
+# Line_number.sh
+'#!/bin/sh\n# script line_number.sh\n# appends line numbers to a .txt file and outputs result to "output_file"\n\ninput_file="$1"\noutput_file="$2"\nif [[ -d "$input_file" ]]\nthen\n  exit 251\nelif [[ ! -f "$input_file" ]]\nthen\n  exit 252\nelif [[ -f "$output_file" ]]\nthen\n  exit 253\nelse\n  nl "$input_file" > "$output_file"\nfi\n'
+
+# Move.sh
+'#!/bin/sh\n# script move.sh\n# move "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$destination" || -d "$destination" ]]\nthen\n  exit 253\nfi\nmv "$item" "$destination"\n'
+
+# Organize.sh
+'#!/bin/sh\n# script organize.sh\n# organize file by given type in given folder\n\nfolder="$1"\nfile_type="$2"\nif [[ -d "$folder" ]]\nthen\n    final_dest="$folder"/"$file_type"\n    mkdir -p "$final_dest"\n    mv "$folder"/*."$file_type" "$final_dest"\n    exit 0\nelse\n  exit 252\nfi\n'
