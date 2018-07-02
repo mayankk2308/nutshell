@@ -12,7 +12,7 @@ Download and make it executable. Of all the options used, make sure that the one
   Provide absolute path to script
 - #### Test String (`-t|--test`)
   Output the created string with proper formatting
-- #### Test String (`-i=|--ignore=`)
+- ####  Ignore Sub-String (`-i=|--ignore=`)
   Ignore lines containing a specific substring
 
 ## Limitation

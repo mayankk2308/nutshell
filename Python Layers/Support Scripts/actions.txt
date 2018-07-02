@@ -1,5 +1,5 @@
 # Copy.sh
-'#!/bin/sh\n# script copy.sh\n# copy "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$item" && -d "$item" ]]\nthen\n  rsync -r "$item" "$destination"\n  exit 0\nelse\n  exit 252\nfi\n'
+'#!/bin/sh\n# script copy.sh\n# copy "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$item" && -d "$destination" ]]\nthen\n  rsync -r "$item" "$destination"\n  exit 0\nelse\n  exit 252\nfi\n'
 
 # Open.sh
 '#!/bin/sh\n# script open.sh\n# open "item" with default OS application\n\nitem="$1"\nopen "$item"\nexit 0\n'
