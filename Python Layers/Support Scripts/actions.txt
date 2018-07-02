@@ -15,3 +15,9 @@
 
 # Organize.sh
 '#!/bin/sh\n# script organize.sh\n# organize file by given type in given folder\n\nfolder="$1"\nfile_type="$2"\nif [[ -d "$folder" ]]\nthen\n    final_dest="$folder"/"$file_type"\n    mkdir -p "$final_dest"\n    mv "$folder"/*."$file_type" "$final_dest"\n    exit 0\nelse\n  exit 252\nfi\n'
+
+# Chmod.sh
+'#!/bin/sh\n# script chmod.sh\n# Make file executable\n\nitem="$1"\nif [[ -f "${item}" ]]\nthen\n  chmod +x "${item}"\n  exit 0\nelse\n  exit 252\nfi\n'
+
+# Open_terminal.sh [Calls Apple Script]
+'#!/bin/sh\n# script open_terminal\n# Opens terminal at desired location\n\nterminal_location="${1}"\nif [[ -d $terminal_location ]]\nthen\n  osascript -e 'tell application "Terminal" to do script "cd '${terminal_location}' && clear"'>>/dev/null\n  exit 0\nelse\n  exit 252\nfi\n'
