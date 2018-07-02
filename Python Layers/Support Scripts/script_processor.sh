@@ -10,14 +10,21 @@ normal="$(tput sgr0)"
 # Defaults
 testing=false
 working_dir="$(pwd)/"
+ignore_lines=false
+substr_to_ignore=""
 
 script_to_string() {
   local IFS=$'\t'
   local file_path="${1}"
   local bash_string=""
-  while read -r p
+  while read -r line
   do
-    bash_string+="${p}\n"
+    if [[ "${ignore_lines}" == true &&  "${line}" =~ "${substr_to_ignore}" ]]
+    then
+      continue
+    else
+      bash_string+="${line}\n"
+    fi
   done <"${file_path}"
   echo -e "\n${bold}Your script as a single string is:${normal}"
   echo  "'"$bash_string"'"
@@ -43,6 +50,10 @@ parse_args() {
       ;;
       -t|--test)
       testing=true
+      ;;
+      -i=*|--ignore=*)
+      ignore_lines=true
+      substr_to_ignore="${arg#*=}"
       ;;
       *)
       echo "Invalid argument."

@@ -4,7 +4,7 @@
 
 item="$1"
 destination="$2"
-if [[ -f "$item" && -d "$item" ]]
+if [[ -f "$item" && -d "$destination" ]]
 then
   rsync -r "$item" "$destination"
   exit 0
