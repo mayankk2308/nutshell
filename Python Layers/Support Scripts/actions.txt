@@ -20,7 +20,13 @@
 '#!/bin/sh\n# script chmod.sh\n# Make file executable\n\nitem="$1"\nif [[ -f "${item}" ]]\nthen\n  chmod +x "${item}"\n  exit 0\nelse\n  exit 252\nfi\n'
 
 # Open_terminal.sh [Calls Apple Script]
-'#!/bin/sh\n# script open_terminal\n# Opens terminal at desired location\n\nterminal_location="${1}"\nif [[ -d $terminal_location ]]\nthen\n  osascript -e "tell application \"Terminal\" to do script \"cd '${terminal_location}' && clear\""\n  exit 0\nelse\n  exit 252\nfi\n'
+'#!/bin/sh\n# script open_terminal\n# Opens terminal at desired location\n\nterminal_location="${1}"\nif [[ -d $terminal_location ]]\nthen\n  osascript -e "tell application \"Terminal\" to do script \"cd '${terminal_location}' && clear\"">>/dev/null\n  exit 0\nelse\n  exit 252\nfi\n'
 
 # Spawn_file.sh [Calls Apple Script]
 '#!/bin/sh\n# script spawn_file.sh\n# create and open a new file in default application\n# By default creates it in Desktop.\n# Needs a check for spacing in arguments.\n\nfile_name="${1}"\nspawn_location="${2}"\nif [[ -z "${spawn_location}" ]]\nthen\n  spawn_location=$HOME"/Desktop"\nfi\nabsolute_path="${spawn_location}/${file_name}"\ntouch "${absolute_path}"\nosascript -e "tell application \"Finder\" to open POSIX file \"${absolute_path}\""\n'
+
+# Os_ver.sh
+'#!/bin/sh\n# script os_ver.sh\n# give the current OS version\n\nsw_vers -productVersion\nexit 0\n'
+
+# Screenshot.sh
+'#!/bin/sh\n# script bin_ver.sh\n# give version of  binary\n# Could include several options eg. current window, entire screen etc.\n# Could allow user to set location to store screenshot\n\nsc_name="${1}"\n\nif [[ -z $sc_name ]]\nthen\n  sc_name="untitled.png"\nfi\nscreencapture $HOME/Desktop/"${sc_name}"\n'
