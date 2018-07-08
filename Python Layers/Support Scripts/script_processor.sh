@@ -27,6 +27,7 @@ script_to_string() {
     fi
   done <"${file_path}"
   echo -e "\n${bold}Your script as a single string is:${normal}"
+  bash_string="${bash_string%??}"
   echo  "'"$bash_string"'"
   # echo
   if [[ "${testing}" == true ]]

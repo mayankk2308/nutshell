@@ -1,32 +1,32 @@
 # Copy.sh
-'#!/bin/sh\n# script copy.sh\n# copy "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$item" && -d "$destination" ]]\nthen\n  rsync -r "$item" "$destination"\n  exit 0\nelse\n  exit 252\nfi\n'
+'#!/bin/sh\n# script copy.sh\n# copy "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$item" && -d "$destination" ]]\nthen\n  rsync -r "$item" "$destination"\n  exit 0\nelse\n  exit 252\nfi'
 
 # Open.sh
-'#!/bin/sh\n# script open.sh\n# open "item" with default OS application\n\nitem="$1"\nopen "$item"\nexit 0\n'
+'#!/bin/sh\n# script open.sh\n# open "item" with default OS application\n\nitem="$1"\nopen "$item"\nexit 0'
 
 # Find.sh
-'#!/bin/sh\n# script find.sh\n# finds given "filename" in current user directory (~)\n\nfilename="$1"\nfind ~ -iname "$filename" -print\nexit 0\n'
+'#!/bin/sh\n# script find.sh\n# finds given "filename" in current user directory (~)\n\nfilename="$1"\nfind ~ -iname "$filename" -print\nexit 0'
 
 # Line_number.sh
-'#!/bin/sh\n# script line_number.sh\n# appends line numbers to a .txt file and outputs result to "output_file"\n\ninput_file="$1"\noutput_file="$2"\nif [[ -d "$input_file" ]]\nthen\n  exit 251\nelif [[ ! -f "$input_file" ]]\nthen\n  exit 252\nelif [[ -f "$output_file" ]]\nthen\n  exit 253\nelse\n  nl "$input_file" > "$output_file"\nfi\n'
+'#!/bin/sh\n# script line_number.sh\n# appends line numbers to a .txt file and outputs result to "output_file"\n\ninput_file="$1"\noutput_file="$2"\nif [[ -d "$input_file" ]]\nthen\n  exit 251\nelif [[ ! -f "$input_file" ]]\nthen\n  exit 252\nelif [[ -f "$output_file" ]]\nthen\n  exit 253\nelse\n  nl "$input_file" > "$output_file"\nfi'
 
 # Move.sh
 '#!/bin/sh\n# script move.sh\n# move "item" to destination "dest"\n\nitem="$1"\ndestination="$2"\nif [[ -f "$destination" || -d "$destination" ]]\nthen\n  exit 253\nfi\nmv "$item" "$destination"\n'
 
 # Organize.sh
-'#!/bin/sh\n# script organize.sh\n# organize file by given type in given folder\n\nfolder="$1"\nfile_type="$2"\nif [[ -d "$folder" ]]\nthen\n    final_dest="$folder"/"$file_type"\n    mkdir -p "$final_dest"\n    mv "$folder"/*."$file_type" "$final_dest"\n    exit 0\nelse\n  exit 252\nfi\n'
+'#!/bin/sh\n# script organize.sh\n# organize file by given type in given folder\n\nfolder="$1"\nfile_type="$2"\nif [[ -d "$folder" ]]\nthen\n    final_dest="$folder"/"$file_type"\n    mkdir -p "$final_dest"\n    mv "$folder"/*."$file_type" "$final_dest"\n    exit 0\nelse\n  exit 252\nfi'
 
 # Chmod.sh
 '#!/bin/sh\n# script chmod.sh\n# Make file executable\n\nitem="$1"\nif [[ -f "${item}" ]]\nthen\n  chmod +x "${item}"\n  exit 0\nelse\n  exit 252\nfi\n'
 
 # Open_terminal.sh [Calls Apple Script]
-'#!/bin/sh\n# script open_terminal\n# Opens terminal at desired location\n\nterminal_location="${1}"\nif [[ -d $terminal_location ]]\nthen\n  osascript -e "tell application \"Terminal\" to do script \"cd '${terminal_location}' && clear\"">>/dev/null\n  exit 0\nelse\n  exit 252\nfi\n'
+'#!/bin/sh\n# script open_terminal\n# Opens terminal at desired location\n\nterminal_location="${1}"\nif [[ -d $terminal_location ]]\nthen\n  osascript -e "tell application \"Terminal\" to do script \"cd '${terminal_location}' && clear\"">>/dev/null\n  exit 0\nelse\n  exit 252\nfi'
 
 # Spawn_file.sh [Calls Apple Script]
-'#!/bin/sh\n# script spawn_file.sh\n# create and open a new file in default application\n# By default creates it in Desktop.\n# Needs a check for spacing in arguments.\n\nfile_name="${1}"\nspawn_location="${2}"\nif [[ -z "${spawn_location}" ]]\nthen\n  spawn_location=$HOME"/Desktop"\nfi\nabsolute_path="${spawn_location}/${file_name}"\ntouch "${absolute_path}"\nosascript -e "tell application \"Finder\" to open POSIX file \"${absolute_path}\""\n'
+'#!/bin/sh\n# script spawn_file.sh\n# create and open a new file in default application\n# By default creates it in Desktop.\n# Needs a check for spacing in arguments.\n\nfile_name="${1}"\nspawn_location="${2}"\nif [[ -z "${spawn_location}" ]]\nthen\n  spawn_location=$HOME"/Desktop"\nfi\nabsolute_path="${spawn_location}/${file_name}"\ntouch "${absolute_path}"\nosascript -e "tell application \"Finder\" to open POSIX file \"${absolute_path}\""'
 
 # Os_ver.sh
-'#!/bin/sh\n# script os_ver.sh\n# give the current OS version\n\nsw_vers -productVersion\nexit 0\n'
+'#!/bin/sh\n# script os_ver.sh\n# give the current OS version\n\nsw_vers -productVersion\nexit 0'
 
 # Screenshot.sh
-'#!/bin/sh\n# script bin_ver.sh\n# give version of  binary\n# Could include several options eg. current window, entire screen etc.\n# Could allow user to set location to store screenshot\n\nsc_name="${1}"\n\nif [[ -z $sc_name ]]\nthen\n  sc_name="untitled.png"\nfi\nscreencapture $HOME/Desktop/"${sc_name}"\n'
+'#!/bin/sh\n# script bin_ver.sh\n# give version of  binary\n# Could include several options eg. current window, entire screen etc.\n# Could allow user to set location to store screenshot\n\nsc_name="${1}"\n\nif [[ -z $sc_name ]]\nthen\n  sc_name="untitled.png"\nfi\nscreencapture $HOME/Desktop/"${sc_name}"'

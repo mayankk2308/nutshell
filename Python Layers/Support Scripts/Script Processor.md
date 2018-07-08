@@ -14,6 +14,3 @@ Download and make it executable. Of all the options used, make sure that the one
   Output the created string with proper formatting
 - ####  Ignore Sub-String (`-i=|--ignore=`)
   Ignore lines containing a specific substring
-
-## Limitation
-- Adds a newline at the end of the string
