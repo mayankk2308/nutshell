@@ -6,7 +6,15 @@ import os
 LanguageLayerInterface = objc.protocolNamed("NLU.LanguageLayerInterface")
 
 class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
+    """
+    A natural-language parser to check command validity and extract args
 
+    Attributes:
+        command_lexicon:     Dictionary of all commands
+        command_rules:       Synctactic rules governing the commands
+        rule_file:           Text file from which rules are read in
+        lexicon_file:        Text file from which lexicon is read in
+    """
     command_lexicon = {}
     command_rules = list()
     rule_file = os.environ['RESOURCEPATH'] + "/command_grammar.txt"
@@ -14,6 +22,15 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
     @classmethod
     def instance(self):
+        """
+        Initializer function.
+
+        Args:
+            None
+
+        Returns:
+            pClass: CkyParser object.
+        """
         pClass = CkyParser.alloc().init()
         pClass.populateRules()
         pClass.populateLexicon()
@@ -21,6 +38,15 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
     @objc.python_method
     def populateLexicon(self):
+        """
+        Read in lexicon file and populate lexicon.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
         with open(CkyParser.lexicon_file) as f:
             content = f.readlines()
         lexicon_text = [x.strip() for x in content]
@@ -38,6 +64,15 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
     @objc.python_method
     def populateRules(self):
+        """
+        Read in lexicon file and populate lexicon.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
         with open(CkyParser.rule_file) as f:
             content = f.readlines()
         command_text = [x.strip() for x in content]
@@ -60,11 +95,40 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
     @staticmethod
     @objc.python_method
     def preProcess(command):
-        command = command.lower()
-        tokens = command.split()
+        """
+        Processes raw input string.
+
+        Args:
+            command: The raw input command.
+
+        Returns:
+            tokens:  An array of words with proper formatting
+        """
+        quotes = 0
+        command += " "
+        current_arg = ""
+        tokens = []
+        for character in command:
+            if character is " " and quotes % 2 is 0:
+                tokens.append(current_arg)
+                current_arg = ""
+            elif character is "'":
+                quotes += 1
+            else:
+                current_arg += character
         return tokens
 
     def parseWithCommand_completionHandler_(self, original_command, completionHandler):
+        """
+        Primary parsing function.
+
+        Args:
+            original_command:   Raw command input from the user.
+            completionHandler:  A function that handles the completion of this parsing fn.
+
+        Returns:
+            completionHandler:  Completion handler with success code. 0, arguments for success, 255 otherwise.
+        """
         command = self.preProcess(original_command)
         N = len(command)
         cells = {}
@@ -112,6 +176,18 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
     @objc.python_method
     def extractArgs(self, current_cell, cells, i, j):
+        """
+        Backtracking function to get arguments.
+
+        Args:
+            current_cell: The cell at hand in recursion.
+            cells:        The CKY Parse matrix.
+            i:            Row index of the cell.
+            j:            Column index of the cell.
+
+        Returns:
+            []:           An array of the command arguments.
+        """
         if current_cell[0] == "file_folder_lex" and current_cell[3] == -1:
             return [current_cell[2]]
         if current_cell[0] == "extension_lex" and current_cell[3] == -1:
@@ -131,6 +207,18 @@ class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
 
     @objc.python_method
     def resolveArgs(self, cell, cells, N):
+        """
+        Primary function to form the array to be passed to UNIX layer.
+        Calls the recursive fn: extractArgs
+
+        Args:
+            cell:       The top-most cell of the CKY matrix.
+            cells:      The CKY Parse matrix.
+            N:          # of columns of CKY matrix.
+
+        Returns:
+            arg_array:  Command + arguments in a single array.
+        """
         first_split = cell[1]
         command_type = cells[(0, first_split)][0][0]
         right_subtree = cells[(first_split, N)]
