@@ -3,9 +3,9 @@ from Foundation import NSObject
 from OutputCodes import OCODE
 import os
 
-LanguageLayerInterface = objc.protocolNamed("Nutshell.LanguageLayerInterface")
+LanguageInterface = objc.protocolNamed("Nutshell.LanguageInterface")
 
-class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
+class CkyParser(NSObject, protocols=[LanguageInterface]):
     """
     A natural-language parser to check command validity and extract args
 
