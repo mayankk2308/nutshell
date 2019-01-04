@@ -3,7 +3,7 @@ from Foundation import NSObject
 from OutputCodes import OCODE
 import os
 
-LanguageLayerInterface = objc.protocolNamed("NLU.LanguageLayerInterface")
+LanguageLayerInterface = objc.protocolNamed("Nutshell.LanguageLayerInterface")
 
 class CkyParser(NSObject, protocols=[LanguageLayerInterface]):
     """
