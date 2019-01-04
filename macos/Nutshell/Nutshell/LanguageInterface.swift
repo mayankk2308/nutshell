@@ -17,17 +17,11 @@ import Foundation
     /// - Returns: instance of the protocol
     static func instance() -> LanguageInterface
     
-    /// Find respective error message from code
-    ///
-    /// - Parameter errorCode: error code (between 0-255)
-    /// - Returns: appropriate output message
-    //    func retrieveOutputMessage(errorCode: Int) -> String
-    
-    /// Executes a unix command
+    /// Parses a command
     ///
     /// - Parameters:
-    ///   - commandPath: path to the script
-    ///   - completionHandler: handler for script completion
+    ///   - commandPath: plaintext command
+    ///   - completionHandler: handler for parse completion
     /// - Returns: `Void`
     func parse(command: String, completionHandler: (_ error: Int,_ response: [String]) -> Void) -> Void
     

@@ -17,9 +17,13 @@
 		A820DA3521E01C8200FC676F /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA3421E01C8200FC676F /* LanguageManager.swift */; };
 		A820DA3F21E01D4000FC676F /* CkyParser.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A820DA3E21E01D4000FC676F /* CkyParser.plugin */; };
 		A820DA4121E01D7100FC676F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA4021E01D7100FC676F /* main.swift */; };
+		B2867B1AA038BC6233E55219 /* Pods_Nutshell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5423BFD513D818F05C2B8F /* Pods_Nutshell.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1903872A78AB9B61A11A0F8F /* Pods-Nutshell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nutshell.release.xcconfig"; path = "Target Support Files/Pods-Nutshell/Pods-Nutshell.release.xcconfig"; sourceTree = "<group>"; };
+		5C5423BFD513D818F05C2B8F /* Pods_Nutshell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nutshell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96C6F284B39C5972119B6CEB /* Pods-Nutshell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nutshell.debug.xcconfig"; path = "Target Support Files/Pods-Nutshell/Pods-Nutshell.debug.xcconfig"; sourceTree = "<group>"; };
 		A820DA1621E0195600FC676F /* Nutshell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nutshell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A820DA1921E0195600FC676F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A820DA1C21E0195600FC676F /* Nutshell.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nutshell.xcdatamodel; sourceTree = "<group>"; };
@@ -40,17 +44,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2867B1AA038BC6233E55219 /* Pods_Nutshell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		093E12700277E52D182D2A11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96C6F284B39C5972119B6CEB /* Pods-Nutshell.debug.xcconfig */,
+				1903872A78AB9B61A11A0F8F /* Pods-Nutshell.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A338ADD8D3E8BDE2C180BEF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C5423BFD513D818F05C2B8F /* Pods_Nutshell.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A820DA0D21E0195600FC676F = {
 			isa = PBXGroup;
 			children = (
 				A820DA1821E0195600FC676F /* Nutshell */,
 				A820DA1721E0195600FC676F /* Products */,
+				093E12700277E52D182D2A11 /* Pods */,
+				A338ADD8D3E8BDE2C180BEF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A820DA2721E0195600FC676F /* Build configuration list for PBXNativeTarget "Nutshell" */;
 			buildPhases = (
+				4CF8A9D4171CFD31CA080B56 /* [CP] Check Pods Manifest.lock */,
 				A820DA1221E0195600FC676F /* Sources */,
 				A820DA1321E0195600FC676F /* Frameworks */,
 				A820DA1421E0195600FC676F /* Resources */,
+				9F3FE5C022F60F4EF729D491 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,6 +220,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CF8A9D4171CFD31CA080B56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nutshell-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F3FE5C022F60F4EF729D491 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nutshell/Pods-Nutshell-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Swipt/Swipt.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swipt.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nutshell/Pods-Nutshell-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A820DA1221E0195600FC676F /* Sources */ = {
@@ -341,11 +414,14 @@
 		};
 		A820DA2821E0195600FC676F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96C6F284B39C5972119B6CEB /* Pods-Nutshell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Nutshell/Nutshell.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YF7XP6ZYSQ;
 				INFOPLIST_FILE = Nutshell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -353,17 +429,21 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mvteam.Nutshell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		A820DA2921E0195600FC676F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1903872A78AB9B61A11A0F8F /* Pods-Nutshell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Nutshell/Nutshell.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YF7XP6ZYSQ;
 				INFOPLIST_FILE = Nutshell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,6 +451,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mvteam.Nutshell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
