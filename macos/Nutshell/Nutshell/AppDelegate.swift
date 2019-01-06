@@ -10,12 +10,13 @@ import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    let menuBarTool = MenuBarTool()
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        menuBarTool.prepareMenuBarTool()
+    }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("MenuBarIcon"))
-        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

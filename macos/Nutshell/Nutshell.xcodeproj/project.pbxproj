@@ -10,13 +10,16 @@
 		A820DA1A21E0195600FC676F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA1921E0195600FC676F /* AppDelegate.swift */; };
 		A820DA1D21E0195600FC676F /* Nutshell.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A820DA1B21E0195600FC676F /* Nutshell.xcdatamodeld */; };
 		A820DA1F21E0195600FC676F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A820DA1E21E0195600FC676F /* Assets.xcassets */; };
-		A820DA2221E0195600FC676F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A820DA2021E0195600FC676F /* MainMenu.xib */; };
 		A820DA2E21E01B3700FC676F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA2D21E01B3700FC676F /* CoreDataStack.swift */; };
 		A820DA3121E01C2500FC676F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA3021E01C2500FC676F /* Language.swift */; };
 		A820DA3321E01C6200FC676F /* LanguageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA3221E01C6200FC676F /* LanguageInterface.swift */; };
 		A820DA3521E01C8200FC676F /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA3421E01C8200FC676F /* LanguageManager.swift */; };
 		A820DA3F21E01D4000FC676F /* CkyParser.plugin in Resources */ = {isa = PBXBuildFile; fileRef = A820DA3E21E01D4000FC676F /* CkyParser.plugin */; };
 		A820DA4121E01D7100FC676F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DA4021E01D7100FC676F /* main.swift */; };
+		A86D757421E17C470075436D /* MenuBarTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D757321E17C470075436D /* MenuBarTool.swift */; };
+		A86D757621E17F360075436D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86D757521E17F360075436D /* MainMenu.xib */; };
+		A86D757921E17F9E0075436D /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D757721E17F9E0075436D /* PopoverViewController.swift */; };
+		A86D757A21E17F9E0075436D /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86D757821E17F9E0075436D /* PopoverViewController.xib */; };
 		B2867B1AA038BC6233E55219 /* Pods_Nutshell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5423BFD513D818F05C2B8F /* Pods_Nutshell.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +31,6 @@
 		A820DA1921E0195600FC676F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A820DA1C21E0195600FC676F /* Nutshell.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nutshell.xcdatamodel; sourceTree = "<group>"; };
 		A820DA1E21E0195600FC676F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A820DA2121E0195600FC676F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A820DA2321E0195600FC676F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A820DA2421E0195600FC676F /* Nutshell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nutshell.entitlements; sourceTree = "<group>"; };
 		A820DA2D21E01B3700FC676F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -37,6 +39,10 @@
 		A820DA3421E01C8200FC676F /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		A820DA3E21E01D4000FC676F /* CkyParser.plugin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CkyParser.plugin; path = ../../../plugins/language/dist/CkyParser.plugin; sourceTree = "<group>"; };
 		A820DA4021E01D7100FC676F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A86D757321E17C470075436D /* MenuBarTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarTool.swift; sourceTree = "<group>"; };
+		A86D757521E17F360075436D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		A86D757721E17F9E0075436D /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		A86D757821E17F9E0075436D /* PopoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				A820DA1921E0195600FC676F /* AppDelegate.swift */,
-				A820DA2021E0195600FC676F /* MainMenu.xib */,
+				A86D757321E17C470075436D /* MenuBarTool.swift */,
+				A86D757721E17F9E0075436D /* PopoverViewController.swift */,
+				A86D757821E17F9E0075436D /* PopoverViewController.xib */,
+				A86D757521E17F360075436D /* MainMenu.xib */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -213,9 +222,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A86D757A21E17F9E0075436D /* PopoverViewController.xib in Resources */,
 				A820DA1F21E0195600FC676F /* Assets.xcassets in Resources */,
-				A820DA2221E0195600FC676F /* MainMenu.xib in Resources */,
 				A820DA3F21E01D4000FC676F /* CkyParser.plugin in Resources */,
+				A86D757621E17F360075436D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,24 +287,15 @@
 				A820DA4121E01D7100FC676F /* main.swift in Sources */,
 				A820DA3121E01C2500FC676F /* Language.swift in Sources */,
 				A820DA1D21E0195600FC676F /* Nutshell.xcdatamodeld in Sources */,
+				A86D757421E17C470075436D /* MenuBarTool.swift in Sources */,
 				A820DA3521E01C8200FC676F /* LanguageManager.swift in Sources */,
 				A820DA1A21E0195600FC676F /* AppDelegate.swift in Sources */,
+				A86D757921E17F9E0075436D /* PopoverViewController.swift in Sources */,
 				A820DA3321E01C6200FC676F /* LanguageInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A820DA2021E0195600FC676F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A820DA2121E0195600FC676F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A820DA2521E0195600FC676F /* Debug */ = {

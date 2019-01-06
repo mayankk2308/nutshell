@@ -21,8 +21,6 @@ languagePluginBundle.load()
 guard let pLanguageClass = languagePluginBundle.principalClass as? LanguageInterface.Type else {
     fatalError("Principal class could not be loaded")
 }
-
 _ = Language.instance(newInstance: pLanguageClass.instance())
-
 exit(NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv))
 
