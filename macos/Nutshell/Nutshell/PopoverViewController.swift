@@ -16,4 +16,7 @@ class PopoverViewController: NSViewController {
         // Do view setup here.
     }
     
+    @IBAction func quit(_ sender: Any) {
+        NSApplication.shared.terminate(sender)
+    }
 }
