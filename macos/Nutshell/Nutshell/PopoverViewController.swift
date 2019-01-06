@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// Defines Nutshell's primary user interface.
 class PopoverViewController: NSViewController {
 
     override func viewDidLoad() {

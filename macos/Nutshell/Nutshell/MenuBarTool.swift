@@ -15,6 +15,7 @@ class MenuBarTool {
     
     let popover = NSPopover()
     
+    /// Responsible for setting up the menu bar item.
     func prepareMenuBarTool() {
         popover.contentViewController = PopoverViewController()
         if let button = statusItem.button {
@@ -24,6 +25,9 @@ class MenuBarTool {
         }
     }
     
+    /// Handles the popover view presentation.
+    ///
+    /// - Parameter sender: Object responsible for the action.
     @objc func togglePopover(_ sender: Any?) {
         if popover.isShown {
             popover.performClose(sender)
