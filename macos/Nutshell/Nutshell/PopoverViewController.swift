@@ -19,4 +19,9 @@ class PopoverViewController: NSViewController {
     @IBAction func quit(_ sender: Any) {
         NSApplication.shared.terminate(sender)
     }
+    
+    @IBAction func showPreferences(_ sender: Any) {
+        let appDel = NSApplication.shared.delegate as? AppDelegate
+        appDel!.menuBarTool.popover.adjustPopoverHeight(by: 200)
+    }
 }

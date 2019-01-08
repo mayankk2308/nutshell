@@ -20,6 +20,7 @@
 		A86D757621E17F360075436D /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86D757521E17F360075436D /* Main.xib */; };
 		A86D757921E17F9E0075436D /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D757721E17F9E0075436D /* PopoverViewController.swift */; };
 		A86D757A21E17F9E0075436D /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86D757821E17F9E0075436D /* PopoverViewController.xib */; };
+		A8E947AA21E41FA700D92172 /* PopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E947A921E41FA700D92172 /* PopoverManager.swift */; };
 		B2867B1AA038BC6233E55219 /* Pods_Nutshell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5423BFD513D818F05C2B8F /* Pods_Nutshell.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		A86D757521E17F360075436D /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
 		A86D757721E17F9E0075436D /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		A86D757821E17F9E0075436D /* PopoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
+		A8E947A921E41FA700D92172 /* PopoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				A820DA1921E0195600FC676F /* AppDelegate.swift */,
 				A86D757321E17C470075436D /* MenuBarTool.swift */,
+				A8E947A921E41FA700D92172 /* PopoverManager.swift */,
 				A86D757721E17F9E0075436D /* PopoverViewController.swift */,
 				A86D757821E17F9E0075436D /* PopoverViewController.xib */,
 				A86D757521E17F360075436D /* Main.xib */,
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A820DA2E21E01B3700FC676F /* CoreDataStack.swift in Sources */,
+				A8E947AA21E41FA700D92172 /* PopoverManager.swift in Sources */,
 				A820DA4121E01D7100FC676F /* main.swift in Sources */,
 				A820DA3121E01C2500FC676F /* Language.swift in Sources */,
 				A820DA1D21E0195600FC676F /* Nutshell.xcdatamodeld in Sources */,
