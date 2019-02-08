@@ -1,6 +1,6 @@
-# Natural Language Unix
+# Nutshell
 
-Written in **Python 3**, this program allows users to automate seemingly tedious and multi-step processes through the application of **Unix** commands using natural language. In the future, we may also incorporate speech recognition, blurring the limitations of precise syntax programming.
+Written in **Python 3**, this program allows users to automate seemingly tedious and multi-step processes through the application of **Unix** commands. We hope to leverage searchable menus and even HotKeys to make it easy and efficient for users to run these tasks.
 
 ## Supported Commands
 
@@ -14,41 +14,23 @@ The program supports the following commands:
 
 ## Applications
 
-NLU has the following advantages for non-programmers:
-* Extremely easy-to-use natural language syntax
-* Ability to perform complex tasks with a single command
-* Easily adopt more capabilities into the system, making NLU a more personal application
+Nutshell has the following advantages for non-programmers:
+* Extremely easy-to-use
+* Ability to perform complex tasks with a single click
+* Easily adopt more capabilities into the system, making Nutshell a more personal application
 
-The most interesting aspect about NLU is its flexibility, being easy to expand and extremely scalable:
+The most interesting aspect about Nutshell is its flexibility, being easy to expand and extremely scalable:
 * Can add more scripts to the `scripts/` folder to leverage more powerful **unix** capabilities
 * Builds on **python** as a foundation that adds more flexibility, programming paradigms, and applications of rich libraries
 * Provides seamless integration between **unix** and **python** to create unique solutions to problems
 * Allows for a robust user interface platform (still pre-alpha) for **unix**
 
-NLU is currently **pre-alpha** - we think it has great potential to enable powerful capabilities with little to no syntax knowledge overhead.
+Nutshell is currently **pre-alpha** - we think it has great potential to enable powerful capabilities with little to no syntax knowledge overhead.
 
-## Examples
-
-Some requests could be as follows:
-```
-organize everything in Documents
-```
-
-This will organize every file type into a separate folder for that type.
-
-```
-open HelloWorld.java
-```
-
-This will open the the file with the OS-default application for that type.
 
 ## Logging
 
 The application also includes a convenient logging system that maintains a systematic list of commands and results in a subdirectory called `logs`. Logs are ordered by date and captured per session.
-
-## Ground Rules
-
-Due to certain limitations, File/Folder names must not contain spaces within them.
 
 
 ## License
